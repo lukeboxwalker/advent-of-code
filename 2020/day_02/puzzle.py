@@ -4,11 +4,11 @@ def read_input(filename: str) -> list:
 
 
 def part_1(values: list) -> int:
-    return sum(1 for data in values if int(data[0][0]) <= data[2].count(data[1]) <= int(data[0][1]))
+    return sum(int(data[0][0]) <= data[2].count(data[1]) <= int(data[0][1]) for data in values)
 
 
 def part_2(values: list) -> int:
-    return sum(1 for d in values if (d[2][int(d[0][0]) - 1] == d[1]) ^ (d[2][int(d[0][1]) - 1] == d[1]))
+    return sum((d[2][int(d[0][0]) - 1] == d[1]) ^ (d[2][int(d[0][1]) - 1] == d[1]) for d in values)
 
 
 if __name__ == '__main__':

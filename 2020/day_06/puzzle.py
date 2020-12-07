@@ -9,7 +9,7 @@ def part_1(values: list) -> int:
 
 def part_2(values: list) -> int:
     val_set = [set(v.replace(" ", "")) for v in values]
-    return sum(sum(1 for c in val_set[i] if values[i].count(c) == len(values[i].split())) for i in range(len(values)))
+    return sum(sum((values[i].count(c) == len(values[i].split())) for c in val_set[i]) for i in range(len(values)))
 
 
 if __name__ == '__main__':

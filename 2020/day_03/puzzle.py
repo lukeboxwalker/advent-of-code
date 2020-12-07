@@ -7,7 +7,7 @@ def read_input(filename: str) -> list:
 
 
 def count_trees(x: int, y: int, v: list):
-    return sum(1 for n in range(1, len(v)) if y * n < len(v) and v[y * n][x * n % len(v[0])] == '#')
+    return sum(y * n < len(v) and v[y * n][x * n % len(v[0])] == '#' for n in range(1, len(v)))
 
 
 def part_1(values: list) -> int:
