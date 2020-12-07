@@ -1,0 +1,44 @@
+def read_input():
+    questions = []
+    group = []
+    groups = []
+    group_size = 0
+    with open("input.txt", "r") as f:
+        for line in f:
+            if line == "\n":
+                questions.append(group)
+                groups.append(group_size)
+                group = []
+                group_size = 0
+            else:
+                person = line.replace("\n", "")
+                group_size += 1
+                for char in person:
+                    group.append(char)
+        questions.append(group)
+        groups.append(group_size)
+    return questions, groups
+
+
+def part_1(values: list) -> int:
+    return sum(len(set(val)) for val in values)
+
+
+def part_2(values: list, size: list) -> int:
+    result = 0
+    reduced = [set(val) for val in values]
+    for i in range(len(values)):
+        for char in reduced[i]:
+            count = 0
+            for c in values[i]:
+                if c == char:
+                    count += 1
+            if count == size[i]:
+                result += 1
+    return result
+
+
+if __name__ == '__main__':
+    input_list, sizes = read_input()
+    print("Puzzle 1:", part_1(input_list))
+    print("Puzzle 2:", part_2(input_list, sizes))
