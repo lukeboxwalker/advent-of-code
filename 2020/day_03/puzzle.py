@@ -1,5 +1,4 @@
-import operator
-from functools import reduce
+import numpy as np
 
 
 def read_input(filename: str) -> list:
@@ -7,15 +6,8 @@ def read_input(filename: str) -> list:
         return f.read().splitlines()
 
 
-def map_x(x: int, row_len: int) -> int:
-    result = x
-    while result > row_len - 1:
-        result -= row_len
-    return result
-
-
 def count_trees(x: int, y: int, v: list):
-    return sum([1 for n in range(1, len(v)) if y * n < len(v) and v[y * n][map_x(x * n, len(v[0]))] == '#'])
+    return sum(1 for n in range(1, len(v)) if y * n < len(v) and v[y * n][x * n % len(v[0])] == '#')
 
 
 def part_1(values: list) -> int:
@@ -23,7 +15,7 @@ def part_1(values: list) -> int:
 
 
 def part_2(values: list) -> int:
-    return reduce(operator.mul, [count_trees(x, y, values) for (x, y) in [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]])
+    return int(np.prod([count_trees(x, y, values) for (x, y) in [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]]))
 
 
 if __name__ == '__main__':
