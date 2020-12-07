@@ -1,10 +1,10 @@
-#Advent of Code 2020
+# Advent of Code 2020
 
 Copyright (c) Eric Wastl
 
 [Link to website](https://adventofcode.com/2020)
 
-##Prolog
+## Prolog
 
 After saving Christmas [five years in a row](https://adventofcode.com/events), you've decided to take a vacation at a nice resort on a tropical island. Surely, Christmas will go on without you.
 
@@ -14,7 +14,7 @@ To save your vacation, you need to get all **fifty stars** by December 25th.
 
 Collect stars by solving puzzles. Two puzzles will be made available on each day in the Advent calendar; the second puzzle is unlocked when you complete the first. Each puzzle grants **one star**. Good luck!
 
-##Overview
+## Overview
 
 | Day | Part 1 | Part 2 |
 | :--- | :---: | ---: |
