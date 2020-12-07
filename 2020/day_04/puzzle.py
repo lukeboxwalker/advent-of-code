@@ -12,7 +12,7 @@ def data_to_pass_map(data: str) -> map:
 
 def read_input(filename: str) -> list:
     with open(filename, "r") as f:
-        return [data_to_pass_map(data) for data in [d.replace("\n", " ") for d in f.read().split("\n\n")]]
+        return [data_to_pass_map(d.replace("\n", " ")) for d in f.read().split("\n\n")]
 
 
 def part_1(values: list) -> int:
