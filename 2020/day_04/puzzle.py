@@ -34,10 +34,9 @@ def part_2(values: list) -> int:
 
 if __name__ == '__main__':
     assert part_1(read_input("test.txt")) == 2
-
     assert part_2(read_input("test_invalid.txt")) == 0
     assert part_2(read_input("test_valid.txt")) == 4
 
     input_map = read_input("input.txt")
-    print("Puzzle 1:", part_1(input_map))
-    print("Puzzle 2:", part_2(input_map))
+    print("Part 1:", part_1(input_map))
+    print("Part 2:", part_2(input_map))
