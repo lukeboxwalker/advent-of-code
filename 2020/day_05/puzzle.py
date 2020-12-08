@@ -35,5 +35,5 @@ if __name__ == '__main__':
     assert part_1(read_input("test.txt")) == 820
 
     my_input = read_input("input.txt")
-    print("Puzzle 1:", part_1(my_input))
-    print("Puzzle 2:", part_2(my_input))
+    print("Part 1:", part_1(my_input))
+    print("Part 2:", part_2(my_input))
