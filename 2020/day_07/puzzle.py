@@ -40,12 +40,10 @@ def part_2(bags: map) -> int:
 
 if __name__ == '__main__':
     test_input = read_input("test.txt")
-
     assert part_1(test_input) == 4
     assert part_2(test_input) == 32
-
     assert part_2(read_input("test_nested_bags.txt")) == 126
 
     my_input = read_input("input.txt")
-    print("Puzzle 1:", part_1(my_input))
-    print("Puzzle 2:", part_2(my_input))
+    print("Part 1:", part_1(my_input))
+    print("Part 2:", part_2(my_input))
