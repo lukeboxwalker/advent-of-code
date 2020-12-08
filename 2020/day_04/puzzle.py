@@ -4,7 +4,7 @@ import re
 def read_input(filename: str) -> list:
     with open(filename, "r") as f:
         required = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
-        return [dict(map(lambda x: (x.split(":")[0], x.split(":")[1]), data.replace("\n", " ").split())) for data in
+        return [dict(map(lambda x: x.split(":"), data.replace("\n", " ").split())) for data in
                 f.read().split("\n\n") if all(key in data for key in required)]
 
 
