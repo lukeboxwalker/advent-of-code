@@ -1,15 +1,17 @@
+from functools import reduce
+
+
 def read_input(filename: str) -> list:
     with open(filename, "r") as f:
-        return [d.replace("\n", " ") for d in f.read().split("\n\n")]
+        return [line.replace("\n", " ") for line in f.read().split("\n\n")]
 
 
 def part_1(values: list) -> int:
-    return sum(len(set(val.replace(" ", ""))) for val in values)
+    return sum(len(reduce(set.union, map(set, val.split()))) for val in values)
 
 
 def part_2(values: list) -> int:
-    val_set = [set(v.replace(" ", "")) for v in values]
-    return sum(sum((values[i].count(c) == len(values[i].split())) for c in val_set[i]) for i in range(len(values)))
+    return sum(len(reduce(set.intersection, map(set, val.split()))) for val in values)
 
 
 if __name__ == '__main__':
