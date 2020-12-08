@@ -1,22 +1,15 @@
 import re
 
 
-def data_to_pass_map(data: str) -> map:
-    pass_map = {}
-    for key_val in data.split():
-        key, val = key_val.split(":")
-        if key != "cid":
-            pass_map[key] = val
-    return pass_map
-
-
 def read_input(filename: str) -> list:
     with open(filename, "r") as f:
-        return [data_to_pass_map(d.replace("\n", " ")) for d in f.read().split("\n\n")]
+        required = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
+        return [dict(map(lambda x: (x.split(":")[0], x.split(":")[1]), data.replace("\n", " ").split())) for data in
+                f.read().split("\n\n") if all(key in data for key in required)]
 
 
 def part_1(values: list) -> int:
-    return sum(len(pass_map) == 7 for pass_map in values)
+    return len(values)
 
 
 def part_2(values: list) -> int:
@@ -27,9 +20,10 @@ def part_2(values: list) -> int:
         "hgt": "1([5-8][0-9]|9[0-3])cm|(59|6[0-9]|7[0-6])in",
         "hcl": "#[0-9a-f]{6}",
         "ecl": "amb|blu|brn|gry|grn|hzl|oth",
-        "pid": "[0-9]{9}"
+        "pid": "[0-9]{9}",
+        "cid": ".*"
     }
-    return sum(all(re.fullmatch(patterns[k], p[k]) for k in p) and len(p) == 7 for p in values)
+    return sum(all(re.fullmatch(patterns[key], val[key]) for key in val) for val in values)
 
 
 if __name__ == '__main__':
