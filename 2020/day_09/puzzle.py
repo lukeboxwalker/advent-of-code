@@ -5,7 +5,6 @@ def read_input(filename: str) -> list:
 
 def is_sum_of_previous(values: list, preamble_length: int, index: int) -> bool:
     for i in range(index - preamble_length, index):
-
         for j in range(i + 1, index):
             if int(values[i]) + int(values[j]) == values[index]:
                 return True
@@ -18,7 +17,7 @@ def part_1(values: list, preamble_length: int) -> int:
             return values[i]
 
 
-def sum_to_invalid(values: list, invalid: int) -> list:
+def sum_to_invalid(values: list, part_1_solution: int) -> list:
     for i in range(len(values)):
         result = [values[i]]
         result_sum = values[i]
@@ -26,9 +25,9 @@ def sum_to_invalid(values: list, invalid: int) -> list:
         while j < len(values) - 1:
             result.append(values[j])
             result_sum += values[j]
-            if result_sum > invalid:
+            if result_sum > part_1_solution:
                 j = len(values)
-            if result_sum == invalid:
+            elif result_sum == part_1_solution:
                 return result
             j += 1
     return []
