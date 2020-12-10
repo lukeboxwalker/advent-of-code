@@ -2,7 +2,7 @@ def read_input(filename: str) -> list:
     with open(filename, "r") as f:
         values = [int(line) for line in f.read().splitlines()]
         values.sort()
-        return [0] + values + [values[len(values) - 1] + 3]
+        return [0] + values + [values[-1] + 3]
 
 
 def part_1(values: list) -> int:
@@ -10,14 +10,15 @@ def part_1(values: list) -> int:
     return result.count(1) * result.count(3)
 
 
-# stupid solution...
+def count_ways(values: list, cur: int, cache: dict):
+    if cur in cache:
+        return cache[cur]
+    cache[cur] = sum([count_ways(values, next, cache) for next in range(cur + 1, cur + 4) if next in values])
+    return cache[cur]
+
+
 def part_2(values: list) -> int:
-    s = "".join([str(sum(j < len(values) and values[j] - 3 <= values[i] for j in range(i + 1, i + 4))) for i in
-                 range(len(values))]).replace("332", "7").replace("32", "4").replace("1", "").replace("0", "")
-    prod = 1
-    for c in s:
-        prod *= int(c)
-    return prod
+    return count_ways(values, 0, {values[-1]: 1})
 
 
 if __name__ == '__main__':
