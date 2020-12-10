@@ -14,7 +14,7 @@ def sum_possible_ways(value_set: set, current: int, possible_ways: dict) -> int:
     if current in possible_ways:
         return possible_ways[current]
     possible_ways_for_current = 0
-    for next_current in range(current + 1, current + 4):
+    for next_current in [current + 1, current + 2, current + 3]:
         if next_current in value_set:
             possible_ways_for_current += sum_possible_ways(value_set, next_current, possible_ways)
     possible_ways[current] = possible_ways_for_current
