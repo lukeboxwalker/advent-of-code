@@ -1,7 +1,6 @@
 def read_input(filename: str) -> list:
     with open(filename, "r") as f:
-        values = [int(line) for line in f.read().splitlines()]
-        values.sort()
+        values = sorted([int(line) for line in f.read().splitlines()])
         return [0] + values + [values[-1] + 3]
 
 
