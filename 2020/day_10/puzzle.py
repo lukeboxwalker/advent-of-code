@@ -5,7 +5,7 @@ def read_input(filename: str) -> list:
 
 
 def part_1(values: list) -> int:
-    result = [values[i + 1] - values[i] for i in range(len(values) - 1)]
+    result = [b - a for (a, b) in zip(values, values[1:])]
     return result.count(1) * result.count(3)
 
 
