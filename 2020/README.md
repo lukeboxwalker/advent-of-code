@@ -16,7 +16,7 @@ Collect stars by solving puzzles. Two puzzles will be made available on each day
 
 ## Overview
 
-Collected stars: 26 ★
+Collected stars: 28 ★
 
 | Day | Part 1 | Part 2 |
 | :--- | :---: | :---: |
@@ -33,7 +33,7 @@ Collected stars: 26 ★
 | 11 | ✔ | ✔ |
 | 12 | ✔ | ✔ |
 | 13 | ✔ | ✔ |
-| 14 |  |  |
+| 14 | ✔ | ✔ |
 | 15 |  |  |
 | 16 |  |  |
 | 17 |  |  |
