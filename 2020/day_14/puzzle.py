@@ -41,15 +41,22 @@ def part_1(values: list) -> int:
 
 def part_2(values: list) -> int:
     mem = dict()
+    combination_cache = {}
     for val in values:
         x_count = val.mask.count("X")
-        combinations = [i for i in itertools.product([1, 0], repeat=x_count)]
+        if x_count not in combination_cache:
+            combination_cache[x_count] = [i for i in itertools.product([1, 0], repeat=x_count)]
+        combinations = combination_cache[x_count]
+        and_mask = val.mask.replace("0", "1").replace("X", "0")
+        comb_or_masks = []
+        for combination in combinations:
+            or_mask = val.mask
+            for x in combination:
+                or_mask = or_mask.replace("X", str(x), 1)
+            comb_or_masks.append(or_mask)
+
         for i in val.operations:
-            for combination in combinations:
-                and_mask = val.mask.replace("0", "1").replace("X", "0")
-                or_mask = val.mask
-                for x in combination:
-                    or_mask = or_mask.replace("X", str(x), 1)
+            for or_mask in comb_or_masks:
                 mem[(i[0] & int(and_mask, 2)) | int(or_mask, 2)] = i[1]
     return sum(mem.values())
 
