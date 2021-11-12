@@ -2,7 +2,6 @@ def read_input(filename: str) -> list:
     with open(filename, "r") as f:
         return f.read().splitlines()
 
-
 def part_1(values: list) -> int:
     for i in range(len(values)):
         for j in range(i, len(values)):
