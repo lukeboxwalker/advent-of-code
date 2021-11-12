@@ -16,11 +16,6 @@ cookies = {
 url = "https://adventofcode.com/" + str(year) + "/day/"
 
 
-def read_input(filename: str) -> list:
-    with open(filename, "r") as f:
-        return f.read().splitlines()
-
-
 def html_to_markdown(text: str):
     text = re.search('<main>(.|\n)*</main>', text).group(0)
     text = text.replace('<em class="star">', "**") \

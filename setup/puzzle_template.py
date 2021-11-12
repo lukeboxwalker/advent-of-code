@@ -1,4 +1,6 @@
-from setup.setup_script import read_input
+def read_input(filename: str) -> list:
+    with open(filename, "r") as f:
+        return []
 
 
 def part_1(values: list) -> int:
