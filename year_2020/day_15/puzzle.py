@@ -1,3 +1,8 @@
+def read_input(filename: str) -> list:
+    with open(filename, "r") as f:
+        return [int(i) for i in f.read().splitlines()]
+
+
 def solve(values: list, stop: int) -> int:
     cache = dict()
     for i in range(len(values) - 1):
@@ -25,5 +30,6 @@ def part_2(values: list) -> int:
 if __name__ == '__main__':
     assert part_1([0, 3, 6]) == 436
 
-    print("Part 1:", part_1([1, 20, 8, 12, 0, 14]))
-    print("Part 2:", part_2([1, 20, 8, 12, 0, 14]))
+    my_input = read_input("input.txt")
+    print("Part 1:", part_1(my_input))
+    print("Part 2:", part_2(my_input))

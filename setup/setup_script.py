@@ -16,11 +16,6 @@ cookies = {
 url = "https://adventofcode.com/" + str(year) + "/day/"
 
 
-def read_input(filename: str) -> list:
-    with open(filename, "r") as f:
-        return f.read().splitlines()
-
-
 def html_to_markdown(text: str):
     text = re.search('<main>(.|\n)*</main>', text).group(0)
     text = text.replace('<em class="star">', "**") \
@@ -61,8 +56,9 @@ def html_to_markdown(text: str):
 
 if __name__ == '__main__':
 
-    with open("../session_key.yaml", "r") as file:
-        cookies = yaml.safe_load(file)
+    if os.path.exists("../session_key.yaml"):
+        with open("../session_key.yaml", "r") as file:
+            cookies = yaml.safe_load(file)
 
     webpage = requests.get(url + str(day), cookies=cookies).text
 
