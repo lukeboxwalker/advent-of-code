@@ -25,4 +25,8 @@ jobs:
       - name: Test
         run : |
           cd test/;PYTHONPATH=../ coverage run -m unittest puzzle_test.py
-          coverage report -m
+          coverage xml
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          fail_ci_if_error: true
