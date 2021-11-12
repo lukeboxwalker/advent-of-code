@@ -83,6 +83,10 @@ if __name__ == '__main__':
         file.truncate(0)
         file.write(webpage)
 
+    solution_path = path + "/solution.txt"
+    if not os.path.exists(solution_path):
+        copyfile("solution_template.txt", solution_path)
+
     puzzle_path = path + "/puzzle.py"
     if not os.path.exists(puzzle_path):
         copyfile("puzzle_template.py", puzzle_path)

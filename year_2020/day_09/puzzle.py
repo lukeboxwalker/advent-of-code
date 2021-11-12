@@ -3,6 +3,10 @@ def read_input(filename: str) -> list:
         return [int(line) for line in f.read().splitlines()]
 
 
+def read_extra_input(filename: str) -> list:
+    return read_input(filename)
+
+
 def is_sum_of_previous(values: list, preamble_length: int, index: int) -> bool:
     for i in range(index - preamble_length, index):
         for j in range(i + 1, index):
@@ -11,7 +15,8 @@ def is_sum_of_previous(values: list, preamble_length: int, index: int) -> bool:
     return False
 
 
-def part_1(values: list, preamble_length: int) -> int:
+def part_1(values: list, extra: list) -> int:
+    preamble_length = extra[0]
     for i in range(preamble_length, len(values)):
         if not is_sum_of_previous(values, preamble_length, i):
             return values[i]
@@ -33,16 +38,19 @@ def sum_to_invalid(values: list, part_1_solution: int) -> list:
     return []
 
 
-def part_2(values: list, invalid: int) -> int:
+def part_2(values: list, extra: list) -> int:
+    invalid = extra[1]
     numbers = sum_to_invalid(values, invalid)
     return min(numbers) + max(numbers)
 
 
 if __name__ == '__main__':
     test_input = read_input("test.txt")
-    assert part_1(test_input, 5) == 127
-    assert part_2(test_input, 127) == 62
+    text_extra_input = read_extra_input("extra_test.txt")
+    assert part_1(test_input, text_extra_input) == 127
+    assert part_2(test_input, text_extra_input) == 62
 
     my_input = read_input("input.txt")
-    print("Part 1:", part_1(my_input, 25))
-    print("Part 2:", part_2(my_input, 18272118))
+    my_extra_input = read_extra_input("extra_input.txt")
+    print("Part 1:", part_1(my_input, my_extra_input))
+    print("Part 2:", part_2(my_input, my_extra_input))
