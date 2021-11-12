@@ -13,10 +13,6 @@ def build_params():
     return params
 
 
-if __name__ == '__main__':
-    print(build_params())
-
-
 class PuzzleTest(unittest.TestCase):
 
     @parameterized.expand(build_params())

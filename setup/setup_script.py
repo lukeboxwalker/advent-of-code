@@ -56,8 +56,9 @@ def html_to_markdown(text: str):
 
 if __name__ == '__main__':
 
-    with open("../session_key.yaml", "r") as file:
-        cookies = yaml.safe_load(file)
+    if os.path.exists("../session_key.yaml"):
+        with open("../session_key.yaml", "r") as file:
+            cookies = yaml.safe_load(file)
 
     webpage = requests.get(url + str(day), cookies=cookies).text
 
@@ -80,4 +81,6 @@ if __name__ == '__main__':
         file.truncate(0)
         file.write(webpage)
 
-    copyfile("puzzle_template.py", "../" + str(year) + "/day_" + format_day + "/puzzle.py")
+    path = "../" + str(year) + "/day_" + format_day + "/puzzle.py"
+    if not os.path.exists(path):
+        copyfile("puzzle_template.py", path)
