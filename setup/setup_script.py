@@ -75,14 +75,18 @@ if __name__ == '__main__':
     if not os.path.exists(day_dir):
         os.mkdir(day_dir)
 
-    with codecs.open("../" + str(year) + "/day_" + format_day + "/README.md", "w", "utf-8") as file:
+    path = "../" + str(year) + "/day_" + format_day
+
+    with codecs.open(path + "/README.md", "w", "utf-8") as file:
         file.truncate(0)
         file.write(html_to_markdown(webpage))
 
     webpage = requests.get(url + str(day) + "/input", cookies=cookies).text
 
-    with open("../" + str(year) + "/day_" + format_day + "/input.txt", "a") as file:
+    with open(path + "/input.txt", "a") as file:
         file.truncate(0)
         file.write(webpage)
 
-    copyfile("puzzle_template.py", "../" + str(year) + "/day_" + format_day + "/puzzle.py")
+    puzzle_path = path + "/puzzle.py"
+    if not os.path.exists(puzzle_path):
+        copyfile("puzzle_template.py", puzzle_path)
