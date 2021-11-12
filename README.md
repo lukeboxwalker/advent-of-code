@@ -1,4 +1,6 @@
-# Advent of Code
+![example workflow](https://github.com/lukeboxwalker/advent-of-code/actions/workflows/main.yml/badge.svg)
+
+#  Advent of Code
 
 This repository contains my solutions for [Advent of Code](https://adventofcode.com/) by [Eric Wastl](http://was.tl/).
 
