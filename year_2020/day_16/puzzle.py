@@ -36,10 +36,11 @@ def read_input(filename: str) -> [list, list, list]:
                 split = lines[index].split(": ")
                 rules.append(Rule(split[0], split[1]))
             index += 1
-    return rules, my_ticket, nearby_tickets
+    return [rules, my_ticket, nearby_tickets]
 
 
-def part_1(rules: list, nearby_tickets: list) -> int:
+def part_1(values: list) -> int:
+    rules, my_tickets, nearby_tickets = values
     result = []
     for ticket in nearby_tickets:
         for num in ticket:
@@ -68,7 +69,8 @@ def collect_valid_tickets(rules: list, nearby_tickets: list) -> list:
     return valid_nearby_tickets
 
 
-def part_2(rules: list, my_tickets: list, nearby_tickets: list) -> int:
+def part_2(values: list) -> int:
+    rules, my_tickets, nearby_tickets = values
     valid_nearby_tickets = collect_valid_tickets(rules, nearby_tickets)
     rule_map = {}
     found_index = set()
@@ -94,6 +96,6 @@ if __name__ == '__main__':
     #assert part_1(rules, nearby_tickets) == 71
     #assert part_2(rules, my_ticket, nearby_tickets) == -1
 
-    rules, my_ticket, nearby_tickets = read_input("input.txt")
-    print("Part 1:", part_1(rules, nearby_tickets))
-    print("Part 2:", part_2(rules, my_ticket, nearby_tickets))
+    my_input = read_input("input.txt")
+    print("Part 1:", part_1(my_input))
+    print("Part 2:", part_2(my_input))

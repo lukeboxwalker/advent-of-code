@@ -22,11 +22,11 @@ class PuzzleTest(unittest.TestCase):
     @parameterized.expand(build_params())
     def test_all(self, year_path: str, day_path: str):
 
-        f = __import__(year_path + "." + day_path + ".puzzle", globals(), locals(), [], 0)
+        module = __import__(year_path + "." + day_path + ".puzzle", globals(), locals(), [], 0)
 
-        read_input = f.__dict__[day_path].puzzle.read_input
-        part_1 = f.__dict__[day_path].puzzle.part_1
-        part_2 = f.__dict__[day_path].puzzle.part_2
+        read_input = module.__dict__[day_path].puzzle.read_input
+        part_1 = module.__dict__[day_path].puzzle.part_1
+        part_2 = module.__dict__[day_path].puzzle.part_2
 
         path = "../" + year_path + "/" + day_path
         solution1, solution2 = 0, 0
