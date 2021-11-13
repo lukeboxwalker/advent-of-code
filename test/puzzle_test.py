@@ -8,7 +8,8 @@ def build_params():
     params = []
     years = [i for i in os.listdir(os.getcwd() + "/..") if i.startswith("year")]
     for year_path in years:
-        days = sorted([i for i in os.listdir(os.getcwd() + "/../" + year_path) if i.startswith("day")])
+        days = sorted(
+            [i for i in os.listdir(os.getcwd() + "/../" + year_path) if i.startswith("day")])
         params += list(zip([year_path] * len(days), days))
     return params
 
@@ -16,8 +17,7 @@ def build_params():
 class PuzzleTest(unittest.TestCase):
 
     @parameterized.expand(build_params())
-    def test_all(self, year_path: str, day_path: str):
-
+    def test_puzzle_parts(self, year_path: str, day_path: str):
         module = __import__(year_path + "." + day_path + ".puzzle", globals(), locals(), [], 0)
 
         path = "../" + year_path + "/" + day_path
