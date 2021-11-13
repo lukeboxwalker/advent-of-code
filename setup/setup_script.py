@@ -56,22 +56,22 @@ def html_to_markdown(text: str):
 
 if __name__ == '__main__':
 
-    if os.path.exists("../session_key.yaml"):
-        with open("../session_key.yaml", "r") as file:
+    if os.path.exists("../session_key.yml"):
+        with open("../session_key.yml", "r") as file:
             cookies = yaml.safe_load(file)
 
     webpage = requests.get(url + str(day), cookies=cookies).text
 
     format_day = f"{day:02d}"
 
-    year_dir = os.getcwd()[:-6] + "\\" + str(year)
-    day_dir = os.getcwd()[:-6] + "\\" + str(year) + "\\day_" + format_day
+    year_dir = os.getcwd()[:-6] + "\\year_" + str(year)
+    day_dir = os.getcwd()[:-6] + "\\year_" + str(year) + "\\day_" + format_day
     if not os.path.exists(year_dir):
         os.mkdir(year_dir)
     if not os.path.exists(day_dir):
         os.mkdir(day_dir)
 
-    path = "../" + str(year) + "/day_" + format_day
+    path = "../year_" + str(year) + "/day_" + format_day
 
     with codecs.open(path + "/README.md", "w", "utf-8") as file:
         file.truncate(0)
