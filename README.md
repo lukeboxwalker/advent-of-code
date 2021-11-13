@@ -1,8 +1,9 @@
-![example workflow](https://github.com/lukeboxwalker/advent-of-code/actions/workflows/main.yml/badge.svg) 
-![coverage](https://img.shields.io/codecov/c/github/lukeboxwalker/advent-of-code)
+ 
+<a href="https://github.com/lukeboxwalker/advent-of-code/actions">![example workflow](https://github.com/lukeboxwalker/advent-of-code/actions/workflows/main.yml/badge.svg)</a>
+<a href="https://app.codecov.io/gh/lukeboxwalker/advent-of-code">![coverage](https://img.shields.io/codecov/c/github/lukeboxwalker/advent-of-code)</a>
 ![language](https://img.shields.io/github/languages/top/lukeboxwalker/advent-of-code)
-![version](https://img.shields.io/badge/python-v3.7-blue)
-![commit](https://img.shields.io/github/last-commit/lukeboxwalker/advent-of-code)
+<a href="https://www.python.org/downloads/release/python-370/">![version](https://img.shields.io/badge/python-v3.7-blue)</a>
+<a href="https://github.com/lukeboxwalker/advent-of-code/commits/master">![commit](https://img.shields.io/github/last-commit/lukeboxwalker/advent-of-code)</a>
 
 #  Advent of Code
 
