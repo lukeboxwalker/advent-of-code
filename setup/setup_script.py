@@ -83,6 +83,10 @@ if __name__ == '__main__':
         file.truncate(0)
         file.write(webpage)
 
+    solution_path = path + "/test_input.txt"
+    if not os.path.exists(solution_path):
+        copyfile("test_input.txt", solution_path)
+
     solution_path = path + "/solution.txt"
     if not os.path.exists(solution_path):
         copyfile("solution_template.txt", solution_path)
