@@ -1,19 +1,15 @@
 import codecs
 import os
 import re
+import sys
 from shutil import copyfile
 
 import requests
 import yaml
 
-day = 17
-year = 2020
-
 cookies = {
     "session": None
 }
-
-url = "https://adventofcode.com/" + str(year) + "/day/"
 
 
 def html_to_markdown(text: str):
@@ -55,6 +51,12 @@ def html_to_markdown(text: str):
 
 
 if __name__ == '__main__':
+    os.chdir(str(sys.argv[0].split("setup_script.py")[0]))
+
+    year = int(sys.argv[1])
+    day = int(sys.argv[2])
+
+    url = "https://adventofcode.com/" + str(year) + "/day/"
 
     if os.path.exists("../session_key.yml"):
         with open("../session_key.yml", "r") as file:
