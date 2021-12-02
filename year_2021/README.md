@@ -16,12 +16,12 @@ Collect stars by solving puzzles.  Two puzzles will be made available on each da
 
 ## Overview
 
-Collected stars: 2 ★
+Collected stars: 4 ★
 
 | Day | Part 1 | Part 2 |
 | :--- | :---: | :---: |
 | 01 | ✔ | ✔ |
-| 02 |  |  |
+| 02 | ✔ | ✔ |
 | 03 |  |  |
 | 04 |  |  |
 | 05 |  |  |
