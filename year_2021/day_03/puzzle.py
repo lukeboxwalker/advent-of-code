@@ -10,10 +10,7 @@ def read_input(filename: str) -> list:
 
 def part_1(values: list) -> int:
     gamma = np.array(list(map(lambda x: sum(x) > len(values) // 2, np.array(values).T)))
-    epsilon = np.invert(gamma)
-    int_gamma = int("".join(gamma.astype(int).astype(str)), 2)
-    int_epsilon = int("".join(epsilon.astype(int).astype(str)), 2)
-    return int_gamma * int_epsilon
+    return int("".join((1 * gamma).astype(str)), 2) * int("".join((1 * np.invert(gamma)).astype(str)), 2)
 
 
 def part_2(values: list) -> int:
