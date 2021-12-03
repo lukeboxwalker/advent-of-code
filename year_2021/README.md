@@ -1,8 +1,8 @@
-# Advent of Code 2020
+# Advent of Code 2021
 
 Copyright (c) Eric Wastl
 
-[Link to website](https://adventofcode.com/2020)
+[Link to website](https://adventofcode.com/2021)
 
 ## Prolog
 
