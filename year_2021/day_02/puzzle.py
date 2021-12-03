@@ -1,3 +1,6 @@
+from timeit import timeit
+
+
 def read_input(filename: str) -> list:
     with open(filename, "r") as f:
         return [(i.split()[0], int(i.split()[1])) for i in f.readlines()]
@@ -37,5 +40,5 @@ if __name__ == '__main__':
     assert part_2(test_input) == 900
 
     my_input = read_input("input.txt")
-    print(f"Part 1: {part_1(my_input)}")
-    print(f"Part 2: {part_2(my_input)}")
+    print(f"Part 1: {part_1(my_input)}, Timing: {timeit(lambda: part_1(my_input), number=1)}")
+    print(f"Part 2: {part_2(my_input)}, Timing: {timeit(lambda: part_2(my_input), number=1)}")

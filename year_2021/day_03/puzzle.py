@@ -1,3 +1,5 @@
+from timeit import timeit
+
 import numpy as np
 
 
@@ -15,25 +17,20 @@ def part_1(values: list) -> int:
 
 
 def part_2(values: list) -> int:
-    v = np.array(values).T
-    idx_ox = list(range(len(v[0])))
-    idx_co2 = list(range(len(v[0])))
-    for i in range(len(v)):
-        sub_set = v[i][idx_ox]
-        most = 1 if sum(sub_set) >= len(sub_set) / 2 else 0
-        idx_ox = [j for j in idx_ox if v[i][j] == most]
-        if len(idx_ox) == 1:
-            idx_ox = idx_ox[0]
-            break
-    for i in range(len(v)):
-        sub_set = v[i][idx_co2]
-        least = 1 if sum(sub_set) < len(sub_set) / 2 else 0
-        idx_co2 = [j for j in idx_co2 if v[i][j] == least]
-        if len(idx_co2) == 1:
-            idx_co2 = idx_co2[0]
-            break
-    int_ox = int("".join(np.array(values[idx_ox]).astype(str)), 2)
-    int_co2 = int("".join(np.array(values[idx_co2]).astype(str)), 2)
+    transpose = np.array(values).T
+    idx_ox = list(range(len(transpose[0])))
+    idx_co2 = list(range(len(transpose[0])))
+    for i in range(len(transpose)):
+        if len(idx_ox) != 1:
+            sub_set = transpose[i][idx_ox]
+            most = 1 if sum(sub_set) >= len(sub_set) / 2 else 0
+            idx_ox = [j for j in idx_ox if transpose[i][j] == most]
+        if len(idx_co2) != 1:
+            sub_set = transpose[i][idx_co2]
+            least = 1 if sum(sub_set) < len(sub_set) / 2 else 0
+            idx_co2 = [j for j in idx_co2 if transpose[i][j] == least]
+    int_ox = int("".join(np.array(values[idx_ox[0]]).astype(str)), 2)
+    int_co2 = int("".join(np.array(values[idx_co2[0]]).astype(str)), 2)
     return int_ox * int_co2
 
 
@@ -43,5 +40,5 @@ if __name__ == '__main__':
     assert part_2(test_input) == 230
 
     my_input = read_input("input.txt")
-    print(f"Part 1: {part_1(my_input)}")
-    print(f"Part 2: {part_2(my_input)}")
+    print(f"Part 1: {part_1(my_input)}, Timing: {timeit(lambda: part_1(my_input), number=1)}")
+    print(f"Part 2: {part_2(my_input)}, Timing: {timeit(lambda: part_2(my_input), number=1)}")
