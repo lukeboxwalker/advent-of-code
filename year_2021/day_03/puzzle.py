@@ -1,6 +1,5 @@
+from functools import reduce
 from timeit import timeit
-
-import numpy as np
 
 
 def read_input(filename: str) -> list:
@@ -9,25 +8,28 @@ def read_input(filename: str) -> list:
 
 
 def part_1(values: list) -> int:
-    gamma = np.array(list(map(lambda x: sum(x) > len(values) // 2, np.array(values).T)))
-    return int("".join((1 * gamma).astype(str)), 2) * int("".join((1 * np.invert(gamma)).astype(str)), 2)
+    gamma, epsilon, half = 0, 0, len(values) / 2
+    for i in range(len(values[0])):
+        s = sum([values[j][i] for j in range(len(values))])
+        gamma = (gamma << 1) | (s > half)
+        epsilon = (epsilon << 1) | (s < half)
+    return gamma * epsilon
 
 
 def part_2(values: list) -> int:
-    transpose = np.array(values).T
-    idx_ox = list(range(len(transpose[0])))
-    idx_co2 = list(range(len(transpose[0])))
-    for i in range(len(transpose)):
+    idx_ox = list(range(len(values)))
+    idx_co2 = list(range(len(values)))
+    for i in range(len(values[0])):
         if len(idx_ox) != 1:
-            sub_set = transpose[i][idx_ox]
+            sub_set = [values[j][i] for j in idx_ox]
             most = 1 if sum(sub_set) >= len(sub_set) / 2 else 0
-            idx_ox = [j for j in idx_ox if transpose[i][j] == most]
+            idx_ox = [j for j in idx_ox if values[j][i] == most]
         if len(idx_co2) != 1:
-            sub_set = transpose[i][idx_co2]
+            sub_set = [values[j][i] for j in idx_co2]
             least = 1 if sum(sub_set) < len(sub_set) / 2 else 0
-            idx_co2 = [j for j in idx_co2 if transpose[i][j] == least]
-    int_ox = int("".join(np.array(values[idx_ox[0]]).astype(str)), 2)
-    int_co2 = int("".join(np.array(values[idx_co2[0]]).astype(str)), 2)
+            idx_co2 = [j for j in idx_co2 if values[j][i] == least]
+    int_ox = reduce(lambda a, b: (a << 1) | b, [0] + values[idx_ox[0]])
+    int_co2 = reduce(lambda a, b: (a << 1) | b, [0] + values[idx_co2[0]])
     return int_ox * int_co2
 
 
