@@ -3,3 +3,4 @@ coverage==6.1.2
 numpy==1.19.4
 parameterized==0.8.1
 requests==2.26.0
+rich~=10.15.2
