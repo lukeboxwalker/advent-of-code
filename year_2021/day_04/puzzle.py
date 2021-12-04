@@ -13,7 +13,7 @@ def read_input(filename: str) -> tuple:
 
 def part_1(values: tuple) -> int:
     marked = [[[] for _ in range(10)] for _ in range(len(values[1]))]
-    for r, number in enumerate(values[0]):
+    for number in values[0]:
         for idx, board in enumerate(values[1]):
             for i in range(len(board[0])):
                 for j in range(len(board[0])):
@@ -32,8 +32,7 @@ def part_2(values: tuple) -> int:
     last = None
     for number in values[0]:
         if len(not_won) == 1:
-            last = not_won.pop()
-            not_won.add(last)
+            last = next(iter(not_won))
         for idx, board in enumerate(values[1]):
             for i in range(len(board[0])):
                 for j in range(len(board[0])):
