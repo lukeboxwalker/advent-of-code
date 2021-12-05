@@ -26,22 +26,21 @@ def part_1(values: tuple) -> int:
 
 
 def part_2(values: tuple) -> int:
-    not_won = {i for i in range(len(values[1]))}
-    marked = [[[] for _ in range(10)] for _ in range(len(values[1]))]
+    won = set()
     last = None
+    marked = [[[] for _ in range(10)] for _ in range(len(values[1]))]
     for number in values[0]:
-        if len(not_won) == 1:
-            last = next(iter(not_won))
-        for idx, board in enumerate(values[1]):
+        for idx in [i for i in range(len(values[1])) if i not in won]:
+            board = values[1][idx]
             for i in range(len(board[0])):
                 for j in range(len(board[0])):
                     if board[i][j] == number:
                         marked[idx][i].append(j)
                         marked[idx][j + 5].append(i)
                         if len(marked[idx][i]) == 5 or len(marked[idx][j + 5]) == 5:
-                            if not_won.__contains__(idx):
-                                not_won.remove(idx)
-        if len(not_won) == 0:
+                            last = idx
+                            won.add(idx)
+        if len(won) == len(values[1]):
             nums = [values[1][last][i][j] for i in range(5) for j in range(5) if j not in marked[last][i]]
             return sum(nums) * number
 
