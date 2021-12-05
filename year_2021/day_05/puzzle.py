@@ -1,38 +1,30 @@
 from timeit import timeit
 
-import numpy as np
-
 from setup.console import console
 
 
 def read_input(filename: str) -> list:
     with open(filename, "r") as f:
-        return [list(map(lambda x: np.array(x.split(",")).astype(int), i.split(" -> "))) for i in f.read().splitlines()]
+        return [list(map(lambda x: list(map(int, x.split(","))), i.split(" -> "))) for i in f.read().splitlines()]
 
 
 def part_1(values: list) -> int:
-    values, count = [np.copy(i) for i in values if i[0][0] == i[1][0] or i[0][1] == i[1][1]], {}
-    for i in values:
-        delta, vec = (i[1] - i[0]) // abs((i[1] - i[0])[0] + (i[1] - i[0])[1]), i[0]
-        while not np.array_equal(vec, i[1] + delta):
-            if (vec[0], vec[1]) in count:
-                count[(vec[0], vec[1])] += 1
-            else:
-                count[(vec[0], vec[1])] = 1
-            vec += delta
-    return sum([1 for i in count if count[i] > 1])
+    values = [i for i in values if i[0][0] == i[1][0] or i[0][1] == i[1][1]]
+    return part_2(values)
 
 
 def part_2(values: list) -> int:
     count = {}
     for i in values:
-        delta, vec = (i[1] - i[0]) // max(abs((i[1] - i[0])[1]), abs((i[1] - i[0])[0])), i[0]
-        while not np.array_equal(vec, i[1] + delta):
-            if (vec[0], vec[1]) in count:
-                count[(vec[0], vec[1])] += 1
+        dx = (i[1][0] - i[0][0]) // max(abs(i[1][0] - i[0][0]), abs(i[1][1] - i[0][1]))
+        dy = (i[1][1] - i[0][1]) // max(abs(i[1][0] - i[0][0]), abs(i[1][1] - i[0][1]))
+        vec = (i[0][0], i[0][1])
+        while not (vec[0] == i[1][0] + dx and vec[1] == i[1][1] + dy):
+            if vec in count:
+                count[vec] += 1
             else:
-                count[(vec[0], vec[1])] = 1
-            vec += delta
+                count[vec] = 1
+            vec = (vec[0] + dx, vec[1] + dy)
     return sum([1 for i in count if count[i] > 1])
 
 
