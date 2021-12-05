@@ -20,10 +20,7 @@ def part_2(values: list) -> int:
         dy = (i[1][1] - i[0][1]) // max(abs(i[1][0] - i[0][0]), abs(i[1][1] - i[0][1]))
         vec = (i[0][0], i[0][1])
         while not (vec[0] == i[1][0] + dx and vec[1] == i[1][1] + dy):
-            if vec in count:
-                count[vec] += 1
-            else:
-                count[vec] = 1
+            count[vec] = 1 + count[vec] if vec in count else 1
             vec = (vec[0] + dx, vec[1] + dy)
     return sum([1 for i in count if count[i] > 1])
 
