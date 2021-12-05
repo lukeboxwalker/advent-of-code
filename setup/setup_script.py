@@ -33,6 +33,8 @@ def html_to_markdown(text: str):
         .replace("<li>", "- ") \
         .replace("<code>", "`") \
         .replace("</code>", "`")\
+        .replace("&gt;", ">") \
+        .replace("&lt;", "<")
 
     text = re.sub('<script>.*</script>', "", text)
     text = re.sub('<a href.*">', "", text)
