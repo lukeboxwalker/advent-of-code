@@ -23,7 +23,6 @@ def part_1(values: tuple) -> int:
                         if len(marked[idx][i]) == 5 or len(marked[idx][j + 5]) == 5:
                             nums = [board[i][j] for i in range(5) for j in range(5) if j not in marked[idx][i]]
                             return sum(nums) * number
-    return 0
 
 
 def part_2(values: tuple) -> int:
@@ -45,7 +44,6 @@ def part_2(values: tuple) -> int:
         if len(not_won) == 0:
             nums = [values[1][last][i][j] for i in range(5) for j in range(5) if j not in marked[last][i]]
             return sum(nums) * number
-    return 0
 
 
 if __name__ == '__main__':
