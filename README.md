@@ -5,9 +5,9 @@
 <a href="https://www.python.org/downloads/release/python-370/">![version](https://img.shields.io/badge/python-v3.7-blue)</a>
 <a href="https://github.com/lukeboxwalker/advent-of-code/commits/master">![commit](https://img.shields.io/github/last-commit/lukeboxwalker/advent-of-code)</a>
 
-#  Advent of Code
+#  Advent of Code 🎄
 
 This repository contains my solutions for [Advent of Code](https://adventofcode.com/) by [Eric Wastl](http://was.tl/).
 
-## Description
+## Description 🎁
 [Advent of Code](https://adventofcode.com/) is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.
