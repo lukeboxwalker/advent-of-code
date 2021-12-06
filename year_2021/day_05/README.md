@@ -1,12 +1,12 @@
 
 
-# Day 5: Hydrothermal Venture 
+# Day 5: Hydrothermal Venture 🎄
 
 Copyright (c) Eric Wastl 
 
 [Link to Day 5](https://adventofcode.com/2021/day/5) 
 
-## Part One
+## Part One 🎁
 You come across a field of hydrothermal vents</a> on the ocean floor! These vents constantly produce large, opaque clouds, so it would be best to avoid them if possible.
 
 They tend to form in **lines**; the submarine helpfully produces a list of nearby <span title="Maybe they're Bresenham vents.">lines of vents</span> (your puzzle input) for you to review. For example:
@@ -55,7 +55,7 @@ Consider only horizontal and vertical lines. **At how many points do at least tw
 
 
 
-##  Part Two 
+##  Part Two 🎁
 Unfortunately, considering only horizontal and vertical lines doesn't give you the full picture; you need to also consider **diagonal lines**.
 
 Because of the limits of the hydrothermal vent mapping system, the lines in your list will only ever be horizontal, vertical, or a diagonal line at exactly 45 degrees. In other words:

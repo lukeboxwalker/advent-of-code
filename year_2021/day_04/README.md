@@ -1,12 +1,12 @@
 
 
-# Day 4: Giant Squid 
+# Day 4: Giant Squid 🎄
 
 Copyright (c) Eric Wastl 
 
 [Link to Day 4](https://adventofcode.com/2021/day/4) 
 
-## Part One
+## Part One 🎁
 You're already almost 1.5km (almost a mile) below the surface of the ocean, already so deep that you can't see any sunlight. What you **can** see, however, is a giant squid that has attached itself to the outside of your submarine.
 
 Maybe it wants to play bingo</a>?
@@ -75,7 +75,7 @@ To guarantee victory against the giant squid, figure out which board will win fi
 
 
 
-##  Part Two 
+##  Part Two 🎁
 On the other hand, it might be wise to try a different strategy: <span title="That's 'cuz a submarine don't pull things' antennas out of their sockets when they lose. Giant squid are known to do that.">let the giant squid win</span>.
 
 You aren't sure how many bingo boards a giant squid could play at once, so rather than waste time counting its arms, the safe thing to do is to **figure out which board will win last** and choose that one. That way, no matter which boards it picks, it will win for sure.

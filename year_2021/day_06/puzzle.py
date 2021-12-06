@@ -1,7 +1,6 @@
 from collections import defaultdict
-from timeit import timeit
 
-from setup.console import console
+from aoc.utils import *
 
 
 def read_input(filename: str) -> list:
@@ -37,5 +36,5 @@ if __name__ == '__main__':
     assert part_2(test_input) == 26984457539
 
     my_input = read_input("input.txt")
-    console.print(f"Part 1: {part_1(my_input)}, Timing: %.2f ms" % (1000 * timeit(lambda: part_1(my_input), number=1)))
-    console.print(f"Part 2: {part_2(my_input)}, Timing: %.2f ms" % (1000 * timeit(lambda: part_2(my_input), number=1)))
+    log(f"Part 1: {part_1(my_input)}, {timings(lambda: part_1(my_input))}")
+    log(f"Part 2: {part_2(my_input)}, {timings(lambda: part_2(my_input))}")

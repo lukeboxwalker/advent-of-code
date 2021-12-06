@@ -44,16 +44,16 @@ def html_to_markdown(text: str):
 
     title = re.search('# .*', text).group(0)
 
-    text = text.replace(title, title
+    text = text.replace(title, title + " 🎄"
                         + "\n\nCopyright (c) Eric Wastl "
                         + "\n\n[Link to Day " + str(day)
                         + "](" + url + str(day)
-                        + ") \n\n## Part One")
+                        + ") \n\n## Part One 🎁")
     return text
 
 
 if __name__ == '__main__':
-    os.chdir(str(sys.argv[0].split("setup_script.py")[0]))
+    os.chdir(str(sys.argv[0].split("setup.py")[0]))
 
     year = int(sys.argv[1])
     day = int(sys.argv[2])
