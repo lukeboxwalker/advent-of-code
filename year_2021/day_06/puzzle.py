@@ -1,3 +1,4 @@
+from collections import defaultdict
 from timeit import timeit
 
 from setup.console import console
@@ -9,14 +10,16 @@ def read_input(filename: str) -> list:
 
 
 def solve(values: list, days: int) -> int:
-    born6, born8 = {(i - 6): values.count(i) for i in values}, {}
+    born6, born8 = defaultdict(int), defaultdict(int)
+    for i in values:
+        born6[i - 6] = values.count(i)
     for day in range(-6, days):
         if day in born6:
-            born6[day + 7] = born6[day] + born6[day + 7] if (day + 7) in born6 else born6[day]
-            born8[day + 7] = born6[day] + born8[day + 7] if day + 7 in born8 else born6[day]
+            born6[day + 7] += born6[day]
+            born8[day + 7] += born6[day]
         if day in born8:
-            born6[day + 9] = born8[day] + born6[day + 9] if (day + 9) in born6 else born8[day]
-            born8[day + 9] = born8[day] + born8[day + 9] if (day + 9) in born8 else born8[day]
+            born6[day + 9] += born8[day]
+            born8[day + 9] += born8[day]
     return sum([born8[i] for i in born8 if i <= days]) + len(values)
 
 
