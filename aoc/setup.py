@@ -14,41 +14,22 @@ cookies = {
 
 def html_to_markdown(text: str):
     text = re.search('<main>(.|\n)*</main>', text).group(0)
-    text = text.replace('<em class="star">', "**") \
-        .replace('</em>', "**") \
-        .replace('<em>', "**") \
-        .replace('<p>', "") \
-        .replace('</p>', "\n") \
-        .replace('<pre><code>', "```\n") \
-        .replace('</code></pre>', "\n```\n") \
-        .replace("---</h2>", "\n") \
-        .replace('<article class="day-desc"><h2>---', "#") \
+    text = text.replace('<em class="star">', "<b>") \
         .replace("<main>", "") \
         .replace("</main>", "") \
+        .replace('<article class="day-desc">', "") \
         .replace("</article>", "") \
-        .replace('<article class="day-desc"><h2 id="part2">---', "## ") \
-        .replace("<ul>", "") \
-        .replace("</ul>", "") \
-        .replace("</li>", "") \
-        .replace("<li>", "- ") \
-        .replace("<code>", "`") \
-        .replace("</code>", "`")\
-        .replace("&gt;", ">") \
-        .replace("&lt;", "<")
+        .replace('</em>', "</b>") \
+        .replace('<em>', "<b>") \
 
     text = re.sub('<script>.*</script>', "", text)
-    text = re.sub('<a href.*">', "", text)
     text = re.sub('<p class="day-success">(.|\n)*', "", text)
-    text = re.sub('Your puzzle answer was.*.', "", text)
-    text = re.sub('To begin, (.|\n)*', "", text)
+    text = re.sub('<p>Your puzzle answer was <code>[0-9]*</code>.</p>', "", text)
 
-    title = re.search('# .*', text).group(0)
-
-    text = text.replace(title, title + " 🎄"
-                        + "\n\nCopyright (c) Eric Wastl "
-                        + "\n\n[Link to Day " + str(day)
-                        + "](" + url + str(day)
-                        + ") \n\n## Part One 🎁")
+    title = re.search('<h2>--- .* ---</h2>', text).group(0)[8:-9]
+    text = re.sub('<h2>--- .* ---</h2>', "<h1>" + title + " 🎄</h1><p>Copyright (c) Eric Wastl</p><a href=" + url + str(
+        day) + ">Link to Day " + str(day) + "</a><h2>Part One 🎁</h2>", text)
+    text = re.sub('<h2 id="part2">--- Part Two ---</h2>', "<h2>Part Two 🎁</h2>", text)
     return text
 
 
