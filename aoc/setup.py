@@ -68,8 +68,8 @@ if __name__ == '__main__':
 
     format_day = f"{day:02d}"
 
-    year_dir = os.getcwd()[:-6] + "\\year_" + str(year)
-    day_dir = os.getcwd()[:-6] + "\\year_" + str(year) + "\\day_" + format_day
+    year_dir = os.getcwd()[:-3] + "\\year_" + str(year)
+    day_dir = os.getcwd()[:-3] + "\\year_" + str(year) + "\\day_" + format_day
     if not os.path.exists(year_dir):
         os.mkdir(year_dir)
     if not os.path.exists(day_dir):
