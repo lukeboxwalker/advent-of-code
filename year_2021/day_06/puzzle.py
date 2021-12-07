@@ -11,15 +11,15 @@ def read_input(filename: str) -> list:
 def solve(values: list, days: int) -> int:
     born6, born8 = defaultdict(int), defaultdict(int)
     for i in values:
-        born6[i - 6] = values.count(i)
-    for day in range(-6, days):
-        if day in born6:
-            born6[day + 7] += born6[day]
-            born8[day + 7] += born6[day]
-        if day in born8:
-            born6[day + 9] += born8[day]
-            born8[day + 9] += born8[day]
-    return sum([born8[i] for i in born8 if i <= days]) + len(values)
+        born8[i - 8] = values.count(i)
+    for day in range(days):
+        if day - 6 in born6:
+            born6[day + 1] += born6[day - 6]
+            born8[day + 1] += born6[day - 6]
+        if day - 8 in born8:
+            born6[day + 1] += born8[day - 8]
+            born8[day + 1] += born8[day - 8]
+    return sum(born8.values())
 
 
 def part_1(values: list) -> int:
