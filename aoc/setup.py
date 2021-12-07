@@ -20,7 +20,7 @@ def html_to_markdown(text: str):
         .replace('<p>', "") \
         .replace('</p>', "\n") \
         .replace('<pre><code>', "```\n") \
-        .replace('</code></pre>', "```\n") \
+        .replace('</code></pre>', "\n```\n") \
         .replace("---</h2>", "\n") \
         .replace('<article class="day-desc"><h2>---', "#") \
         .replace("<main>", "") \
