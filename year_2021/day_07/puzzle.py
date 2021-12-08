@@ -1,21 +1,30 @@
+import numpy as np
+
 from aoc.utils import *
 
 
-def read_input(filename: str) -> list:
+def read_input(filename: str) -> np.array:
     with open(filename, "r") as f:
-        return list(map(int, f.read().splitlines()[0].split(",")))
+        return np.array(f.read().splitlines()[0].split(",")).astype(int)
 
 
-def solve(values: list, f) -> int:
-    return int(min([sum(map(lambda x: f(abs(x - i)), values)) for i in range(max(values))]))
+def calc(values: np.array, i: int, f):
+    return sum(map(lambda x: f(abs(x - i)), values))
 
 
-def part_1(values: list) -> int:
-    return solve(values, lambda x: x)
+def solve(values: np.array, f, g):
+    m = f(values)
+    upper = int(np.ceil(m))
+    lower = int(np.floor(m))
+    return int(min(calc(values, upper, g), calc(values, lower, g)))
 
 
-def part_2(values: list) -> int:
-    return solve(values, lambda x: x * (x + 1) / 2)
+def part_1(values: np.array) -> int:
+    return solve(values, np.median, lambda x: x)
+
+
+def part_2(values: np.array) -> int:
+    return solve(values, np.mean, lambda x: x * (x + 1) / 2)
 
 
 if __name__ == '__main__':
