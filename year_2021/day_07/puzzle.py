@@ -1,6 +1,6 @@
-import numpy as np
+from timeit import timeit
 
-from aoc.utils import *
+import numpy as np
 
 
 def read_input(filename: str) -> np.array:
@@ -33,5 +33,5 @@ if __name__ == '__main__':
     assert part_2(test_input) == 168
 
     my_input = read_input("input.txt")
-    log(f"Part 1: {part_1(my_input)}, {timings(lambda: part_1(my_input))}")
-    log(f"Part 2: {part_2(my_input)}, {timings(lambda: part_2(my_input))}")
+    print(f"Part 1: {part_1(my_input)}, Timing: %.2f ms" % (1000 * timeit(lambda: part_1(my_input), number=1)))
+    print(f"Part 2: {part_2(my_input)}, Timing: %.2f ms" % (1000 * timeit(lambda: part_2(my_input), number=1)))
