@@ -5,7 +5,7 @@ easy_digits = {2: 1, 4: 4, 7: 8, 3: 7}
 
 def read_input(filename: str) -> list:
     with open(filename, "r") as f:
-        return [list(map(lambda x: x.split(), i.split(" | "))) for i in f.read().splitlines()]
+        return [list(map(lambda x: list(map(set, x.split())), i.split(" | "))) for i in f.read().splitlines()]
 
 
 def part_1(values: list) -> int:
@@ -15,27 +15,23 @@ def part_1(values: list) -> int:
 def part_2(values: list) -> int:
     num = 0
     for val in values:
-        decoding = {}
-        for digit in val[0] + val[1]:
-            if len(digit) in easy_digits:
-                decoding[easy_digits[len(digit)]] = set(digit)
-        for digit in val[0] + val[1]:
-            digit_set = set(digit)
-            if len(digit_set) == 5:
-                if digit_set.issubset(decoding[8]) and decoding[1].issubset(digit_set):
-                    decoding[3] = digit_set
-                elif decoding[8].difference(decoding[4]).issubset(digit_set):
-                    decoding[2] = digit_set
+        decoding = {easy_digits[len(digit)]: digit for digit in val[0] if len(digit) in easy_digits}
+        for digit in val[0]:
+            if len(digit) == 5:
+                if digit.issubset(decoding[8]) and decoding[1].issubset(digit):
+                    decoding[3] = digit
+                elif decoding[8].difference(decoding[4]).issubset(digit):
+                    decoding[2] = digit
                 else:
-                    decoding[5] = digit_set
-            if len(digit_set) == 6:
-                if decoding[7].issubset(digit_set) and decoding[4].issubset(digit_set):
-                    decoding[9] = digit_set
-                elif decoding[1].issubset(digit_set) and digit_set.issubset(decoding[8]):
-                    decoding[0] = digit_set
+                    decoding[5] = digit
+            elif len(digit) == 6:
+                if decoding[7].issubset(digit) and decoding[4].issubset(digit):
+                    decoding[9] = digit
+                elif decoding[1].issubset(digit) and digit.issubset(decoding[8]):
+                    decoding[0] = digit
                 else:
-                    decoding[6] = digit_set
-        num += int("".join([str(k[0]) for digit in val[1] for k in decoding.items() if set(digit) == k[1]]))
+                    decoding[6] = digit
+        num += int("".join([str(k[0]) for digit in val[1] for k in decoding.items() if digit == k[1]]))
     return num
 
 
