@@ -49,7 +49,7 @@ def part_2(values: np.array) -> int:
                     replace = identical[replace]
                 labels[i, j] = replace
     _, counts = np.unique(labels, return_counts=True)
-    return int(np.prod(np.sort(counts)[-4:-1]))
+    return int(np.prod(np.sort(counts[1:])[-3:]))
 
 
 if __name__ == '__main__':
