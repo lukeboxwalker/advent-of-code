@@ -15,9 +15,37 @@
 <p>The <b>risk level</b> of a low point is <b>1 plus its height</b>. In the above example, the risk levels of the low points are <code>2</code>, <code>1</code>, <code>6</code>, and <code>6</code>. The sum of the risk levels of all low points in the heightmap is therefore <code><b>15</b></code>.</p>
 <p>Find all of the low points on your heightmap. <b>What is the sum of the risk levels of all low points on your heightmap?</b></p>
 
-<p>To begin, <a href="9/input" target="_blank">get your puzzle input</a>.</p>
-<form method="post" action="9/answer"><input type="hidden" name="level" value="1"/><p>Answer: <input type="text" name="answer" autocomplete="off"/> <input type="submit" value="[Submit]"/></p></form>
-<p>You can also <span class="share">[Share<span class="share-content">on
-  <a href="https://twitter.com/intent/tweet?text=%22Smoke+Basin%22+%2D+Day+9+%2D+Advent+of+Code+2021&amp;url=https%3A%2F%2Fadventofcode%2Ecom%2F2021%2Fday%2F9&amp;related=ericwastl&amp;hashtags=AdventOfCode" target="_blank">Twitter</a>
-  <a href="javascript:void(0);" onclick="var mastodon_instance=prompt('Mastodon Instance / Server Name?'); if(typeof mastodon_instance==='string' && mastodon_instance.length){this.href='https://'+mastodon_instance+'/share?text=%22Smoke+Basin%22+%2D+Day+9+%2D+Advent+of+Code+2021+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2021%2Fday%2F9'}else{return false;}" target="_blank">Mastodon</a
-></span>]</span> this puzzle.</p>
+<h2>Part Two 🎁</h2><p>Next, you need to find the largest basins so you know what areas are most important to avoid.</p>
+<p>A <b>basin</b> is all locations that eventually flow downward to a single low point. Therefore, every low point has a basin, although some basins are very small. Locations of height <code>9</code> do not count as being in any basin, and all other locations will always be part of exactly one basin.</p>
+<p>The <b>size</b> of a basin is the number of locations within the basin, including the low point. The example above has four basins.</p>
+<p>The top-left basin, size <code>3</code>:</p>
+<pre><code><b>21</b>99943210
+<b>3</b>987894921
+9856789892
+8767896789
+9899965678
+</code></pre>
+<p>The top-right basin, size <code>9</code>:</p>
+<pre><code>21999<b>43210</b>
+398789<b>4</b>9<b>21</b>
+985678989<b>2</b>
+8767896789
+9899965678
+</code></pre>
+<p>The middle basin, size <code>14</code>:</p>
+<pre><code>2199943210
+39<b>878</b>94921
+9<b>85678</b>9892
+<b>87678</b>96789
+9<b>8</b>99965678
+</code></pre>
+<p>The bottom-right basin, size <code>9</code>:</p>
+<pre><code>2199943210
+3987894921
+9856789<b>8</b>92
+876789<b>678</b>9
+98999<b>65678</b>
+</code></pre>
+<p>Find the three largest basins and multiply their sizes together. In the above example, this is <code>9 * 14 * 9 = <b>1134</b></code>.</p>
+<p><b>What do you get if you multiply together the sizes of the three largest basins?</b></p>
+
