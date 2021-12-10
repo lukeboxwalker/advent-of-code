@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import 'animate.css'
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
 
 import './app.scss'

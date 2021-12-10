@@ -1,21 +1,32 @@
 <template>
   <div>
-    <h1 class="glow">Advent of Code</h1>
-    <b-button>
+    <div class="animate__animated animate__fadeInDown">
+      <h1 class="glow">Advent of Code</h1>
+      <h6><span class="year-text">0x0000{:/^</span><span class="glow">my soltuions</span><span
+          class="year-text">$/}</span></h6>
+    </div>
+    <b-button class="y2020">
       <div class="tree" v-html="this.tree"></div>
       <h4 class="year-text">{:year <span class="glow">2021</span>}</h4>
     </b-button>
-    <b-button>
+    <b-button class="y2021">
       <div class="tree" v-html="this.hat"></div>
       <h4 class="year-text">{:year <span class="glow">2020</span>}</h4>
     </b-button>
+    <Snowf :amount="100" :size="5" :speed="1.5" :wind="0" :opacity="0.8"
+           :swing="2" :image="null" :zIndex="-1" :resize="true" color="#fff"
+    ></Snowf>
   </div>
-
 </template>
 
 <script>
+import Snowf from 'vue-snowf';
+
 export default {
   name: 'HelloWorld',
+  components: {
+    Snowf
+  },
   props: {
     msg: String
   },
@@ -111,11 +122,22 @@ export default {
 
 }
 
+.y2021 {
+  animation: fadeInRight;
+  animation-duration: 2s;
+}
+
+.y2020 {
+  animation: fadeInLeft;
+  animation-duration: 2s;
+
+}
+
 .btn {
   width: 20em;
   height: 25em;;
   background: #0f0f23;
-  margin: 1em;
+  margin: 2em;
 }
 
 .btn:hover {
@@ -136,18 +158,6 @@ export default {
 .center {
   margin-top: auto;
   margin-bottom: auto;
-}
-
-.card {
-  width: 20em;
-  height: 23em;;
-  background: #0f0f23;
-  border-color: white;
-  margin-left: auto;
-  margin-right: auto;
-  float: none;
-  margin-top: 10em;
-
 }
 
 .glow {
