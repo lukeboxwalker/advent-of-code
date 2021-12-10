@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your AOC"/>
+    <Overview/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Overview from './components/Overview.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Overview
   }
 }
 </script>
@@ -22,7 +21,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #aaaaaa;
   margin-top: 60px;
+}
+
+body {
+  background: #0f0f23;
 }
 </style>
