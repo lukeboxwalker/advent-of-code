@@ -1,17 +1,13 @@
 <template>
   <div id="app">
-    <Overview/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Overview from './components/Overview.vue'
 
 export default {
   name: 'App',
-  components: {
-    Overview
-  }
 }
 </script>
 

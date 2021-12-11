@@ -5,11 +5,11 @@
       <h6><span class="year-text">0x0000{:/^</span><span class="glow">my soltuions</span><span
           class="year-text">$/}</span></h6>
     </div>
-    <b-button class="y2020">
+    <b-button href="/2020" class="y2020">
       <div class="tree" v-html="this.tree"></div>
       <h4 class="year-text">{:year <span class="glow">2021</span>}</h4>
     </b-button>
-    <b-button class="y2021">
+    <b-button href="/2021" class="y2021">
       <div class="tree" v-html="this.hat"></div>
       <h4 class="year-text">{:year <span class="glow">2020</span>}</h4>
     </b-button>
