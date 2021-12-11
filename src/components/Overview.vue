@@ -118,8 +118,6 @@ export default {
 
 .year-text {
   color: #0b3d1a;
-  font-family: "Source Code Pro", monospace;
-
 }
 
 .y2021 {
@@ -152,7 +150,6 @@ export default {
   color: green;
   margin-top: 0;
   margin-bottom: 0;
-  font-family: "Source Code Pro", monospace;
 }
 
 .center {
