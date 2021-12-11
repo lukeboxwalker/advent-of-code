@@ -23,7 +23,7 @@ def flash(values: np.array, i: int, j: int) -> int:
 
 
 def part_1(values: np.array) -> int:
-    current, step = np.copy(values)
+    current = np.copy(values)
     step = np.ones(values.shape).astype(int)
     flashes = 0
     for k in range(100):
