@@ -1,12 +1,16 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <Overview></Overview>
   </div>
 </template>
 
 <script>
+import Overview from './components/Overview.vue'
 
 export default {
+  components: {
+    Overview
+  },
   name: 'App',
 }
 </script>
