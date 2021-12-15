@@ -1,5 +1,14 @@
 from timeit import timeit
 
+letters = {
+    "52225": "O",
+    "4222": "C",
+    "6222": "P",
+    "3333": "Z",
+    "6111": "L",
+    "6221": "F"
+}
+
 
 def read_input(filename: str) -> (list, list):
     with open(filename, "r") as f:
@@ -29,17 +38,15 @@ def part_2(values: tuple) -> str:
     for folding in values[1]:
         points = fold(points, folding)
     shape = max(points)
-
-    def row(i):
-        return "".join(["#" if (j, i) in points else " " for j in range(shape[0] + 1)]) + "\n"
-    return "".join([row(i) for i in range(shape[1] + 1)])
+    nums = "".join([str(sum([1 if (i, j) in points else 0 for j in range(shape[1] + 1)])) for i in range(shape[0] + 1)])
+    return "".join(map(lambda x: letters[x], nums.split("0")))
 
 
 if __name__ == '__main__':
     test_input = read_input("test_input.txt")
     assert part_1(test_input) == 17
-    assert part_2(test_input) == "#####\n#   #\n#   #\n#   #\n#####\n"
+    assert part_2(test_input) == "O"
 
     my_input = read_input("input.txt")
     print(f"Part 1: {part_1(my_input)}, Timing: %.2f ms" % (1000 * timeit(lambda: part_1(my_input), number=1)))
-    print(f"Part 2 Timing: %.2f ms" % (1000 * timeit(lambda: part_2(my_input), number=1)) + f":\n{part_2(my_input)}")
+    print(f"Part 1: {part_2(my_input)}, Timing: %.2f ms" % (1000 * timeit(lambda: part_2(my_input), number=1)))

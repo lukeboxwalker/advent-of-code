@@ -42,11 +42,7 @@ class PuzzleTest(unittest.TestCase):
             solution1, solution2 = [i.split(": ")[1] for i in file.read().splitlines()]
             if solution1.isdigit():
                 solution1 = int(solution1)
-            else:
-                solution1 = solution1.replace("\\n", "\n")
             if solution2.isdigit():
                 solution2 = int(solution2)
-            else:
-                solution2 = solution2.replace("\\n", "\n")
         self.assertEqual(part_1(*params_1), solution1)
         self.assertEqual(part_2(*params_2), solution2)
