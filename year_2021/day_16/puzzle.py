@@ -3,7 +3,7 @@ from functools import reduce
 from timeit import timeit
 
 
-class Package:
+class Packet:
 
     def __init__(self, version: int, type_id: int):
         self.type_id = type_id
@@ -21,29 +21,29 @@ class Package:
         pass
 
 
-class OperatorPackage(Package):
+class OperatorPacket(Packet):
 
-    def __init__(self, version: int, type_id: int, packages: list):
+    def __init__(self, version: int, type_id: int, packets: list):
         super().__init__(version, type_id)
-        self.packages = packages
+        self.packets = packets
 
     def __str__(self) -> str:
-        packages_str = ["["]
-        for i in self.packages:
-            packages_str += [str(i)]
-            packages_str += [","]
-        packages_str = packages_str[:-1]
-        packages_str += ["]"]
-        return "Operator:{" + super().__str__() + f", packages={''.join(packages_str)}" + "}"
+        packets_str = ["["]
+        for i in self.packets:
+            packets_str += [str(i)]
+            packets_str += [","]
+        packets_str = packets_str[:-1]
+        packets_str += ["]"]
+        return "Operator:{" + super().__str__() + f", packets={''.join(packets_str)}" + "}"
 
     def get_version_sum(self) -> int:
         version_sum = self.version
-        for packet in self.packages:
+        for packet in self.packets:
             version_sum += packet.get_version_sum()
         return version_sum
 
     def calc(self) -> int:
-        sub_calc = list(map(lambda x: x.calc(), self.packages))
+        sub_calc = list(map(lambda x: x.calc(), self.packets))
         if self.type_id == 0:
             return sum(sub_calc)
         if self.type_id == 1:
@@ -60,7 +60,7 @@ class OperatorPackage(Package):
             return 1 if sub_calc[0] == sub_calc[1] else 0
 
 
-class LiteralPackage(Package):
+class LiteralPacket(Packet):
 
     def __init__(self, version: int, type_id: int, literal_value: int):
         super().__init__(version, type_id)
@@ -79,20 +79,20 @@ def bin_to_int(values: list):
     return reduce(lambda a, b: (a << 1) | b, [0] + values)
 
 
-def parse(hex_num: str) -> Package:
-    return read_package(list(map(int, bin(int(hex_num, 16))[2:].zfill(len(hex_num) * 4))))[0][0]
+def parse(hex_num: str) -> Packet:
+    return read_packet(list(map(int, bin(int(hex_num, 16))[2:].zfill(len(hex_num) * 4))))[0][0]
 
 
-def read_input(filename: str) -> Package:
+def read_input(filename: str) -> Packet:
     with open(filename, "r") as f:
         return parse(f.read().splitlines()[0])
 
 
-def read_package(values: list, max_packages=0) -> tuple:
-    packages, idx = [], 0
+def read_packet(values: list, max_packets=0) -> tuple:
+    packets, idx = [], 0
     while sum(values[idx:]) != 0:
-        if 0 < max_packages == len(packages):
-            return packages, idx
+        if 0 < max_packets == len(packets):
+            return packets, idx
         packet_version = bin_to_int(values[idx: idx + 3])
         type_id = bin_to_int(values[idx + 3: idx + 6])
         if type_id == 4:
@@ -101,27 +101,27 @@ def read_package(values: list, max_packages=0) -> tuple:
                 literal_value += values[idx + 7 + labels: idx + 11 + labels]
                 labels += 5
             literal_value += values[idx + 7 + labels: idx + 11 + labels]
-            packages.append(LiteralPackage(packet_version, type_id, bin_to_int(literal_value)))
+            packets.append(LiteralPacket(packet_version, type_id, bin_to_int(literal_value)))
             idx = idx + 11 + labels
         elif values[idx + 6] == 0:
             length = bin_to_int(values[idx + 7: idx + 22])
-            read, _ = read_package(values[idx + 22: idx + 22 + length])
-            packages.append(OperatorPackage(packet_version, type_id, read))
+            read, _ = read_packet(values[idx + 22: idx + 22 + length])
+            packets.append(OperatorPacket(packet_version, type_id, read))
             idx = idx + 22 + length
         elif values[idx + 6] == 1:
             packet_count = bin_to_int(values[idx + 7: idx + 18])
-            read, ret_idx = read_package(values[idx + 18:], packet_count)
+            read, ret_idx = read_packet(values[idx + 18:], packet_count)
             idx = ret_idx + idx + 18
-            packages.append(OperatorPackage(packet_version, type_id, read))
-    return packages, idx
+            packets.append(OperatorPacket(packet_version, type_id, read))
+    return packets, idx
 
 
-def part_1(package: Package) -> int:
-    return package.get_version_sum()
+def part_1(packet: Packet) -> int:
+    return packet.get_version_sum()
 
 
-def part_2(package: Package) -> int:
-    return package.calc()
+def part_2(packet: Packet) -> int:
+    return packet.calc()
 
 
 if __name__ == '__main__':
