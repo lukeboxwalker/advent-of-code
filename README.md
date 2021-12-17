@@ -12,5 +12,5 @@ This repository contains my solutions for [Advent of Code](https://adventofcode.
 ## Description 🎁
 [Advent of Code](https://adventofcode.com/) is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.
 
-## My solutions 💻
+## Github Pages (Work in progress) 🌐
 [Github Pages](https://lukeboxwalker.github.io/advent-of-code/#/)
