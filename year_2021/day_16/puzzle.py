@@ -9,9 +9,6 @@ class Packet:
         self.type_id = type_id
         self.version = version
 
-    def __str__(self) -> str:
-        return f"version={self.version}, type_id={self.type_id}"
-
     @abstractmethod
     def get_version_sum(self):
         pass
@@ -26,15 +23,6 @@ class OperatorPacket(Packet):
     def __init__(self, version: int, type_id: int, packets: list):
         super().__init__(version, type_id)
         self.packets = packets
-
-    def __str__(self) -> str:
-        packets_str = ["["]
-        for i in self.packets:
-            packets_str += [str(i)]
-            packets_str += [","]
-        packets_str = packets_str[:-1]
-        packets_str += ["]"]
-        return "Operator:{" + super().__str__() + f", packets={''.join(packets_str)}" + "}"
 
     def get_version_sum(self) -> int:
         version_sum = self.version
@@ -66,14 +54,12 @@ class LiteralPacket(Packet):
         super().__init__(version, type_id)
         self.literal_value = literal_value
 
-    def __str__(self) -> str:
-        return "Literal:{" + super().__str__() + f", value={self.literal_value}" + "}"
-
     def get_version_sum(self):
         return self.version
 
     def calc(self):
         return self.literal_value
+
 
 def bin_to_int(values: list):
     return reduce(lambda a, b: (a << 1) | b, [0] + values)
