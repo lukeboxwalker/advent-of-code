@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
     with open(path + "/input.txt", "a") as file:
         file.truncate(0)
-        file.write(webpage)
+        file.write(webpage[:-1])
 
     solution_path = path + "/test_input.txt"
     if not os.path.exists(solution_path):
@@ -79,3 +79,5 @@ if __name__ == '__main__':
     puzzle_path = path + "/puzzle.py"
     if not os.path.exists(puzzle_path):
         copyfile("puzzle_template.py", puzzle_path)
+
+    os.system('git add ' + path)
