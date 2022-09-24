@@ -1,18 +1,27 @@
 <template>
   <div id="app">
-    <Overview></Overview>
+    <q-layout>
+      <router-view/>
+      <Footer/>
+    </q-layout>
   </div>
 </template>
 
 <script>
-import Overview from './components/Overview.vue'
+import Footer from "./components/Footer.vue";
 
 export default {
   components: {
-    Overview
+    Footer
   },
-  name: 'App',
 }
+</script>
+
+<script setup>
+import {useQuasar} from "quasar";
+
+const $q = useQuasar()
+$q.dark.set(true)
 </script>
 
 <style>
@@ -20,12 +29,7 @@ export default {
   font-family: "Source Code Pro", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #aaaaaa;
-  margin-top: 60px;
 }
 
-body {
-  background: #0f0f23;
-}
+
 </style>
