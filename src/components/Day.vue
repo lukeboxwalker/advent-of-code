@@ -1,36 +1,21 @@
 <template>
   <div class="q-pa-xl">
-    <div class="text-center">
-      <div class="glow text-h2 ">
-        {{ text.title }}
-      </div>
-      <div class="text-h6">
-        <span class="year-text">
-          0x{{ year }}{:/^
-        </span>
-        <span class="glow">
-          my soltuions</span>
-        <span
-            class="year-text">$/}
-        </span>
-      </div>
-    </div>
-
+    <Title :title="text.title" :year="year"></Title>
     <div class="q-pa-sm">
       <highlightjs :code="code"/>
     </div>
-
-
   </div>
 </template>
 
 <script>
 import hljsVuePlugin from "@highlightjs/vue-plugin";
+import Title from "./Title.vue"
 
 export default {
   name: "App",
   components: {
     highlight: hljsVuePlugin.component,
+    Title
   },
 };
 </script>

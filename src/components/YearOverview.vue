@@ -1,28 +1,14 @@
 <template>
   <div class="q-pa-xl">
-    <div class="text-center">
-      <div class="glow text-h2 ">
-        Advent of Code
-      </div>
-      <div class="text-h6">
-        <span class="year-text">
-          0x0000{:/^
-        </span>
-        <span class="glow">
-          my soltuions</span>
-        <span
-            class="year-text">$/}
-        </span>
-      </div>
-    </div>
-    <div v-for="(item, index) in data">
-      <q-card @click="direct(item)" :style="createAnimation(index)" class="q-ma-xl q-hoverable cursor-pointer">
+    <Title title="Advent of Code"></Title>
+    <div v-for="item in data">
+      <q-card @click="direct(item)" class="q-ma-xl q-hoverable cursor-pointer">
         <q-card-section class="row">
           <div class="col-1">
-            <img width="155" height="155" :src="item.img" alt="Title Image">
+            <q-img class="icon" :src="item.img"/>
           </div>
-          <div class="col-11">
-            <div class="year-text text-center">
+          <div class="col-11 flex flex-center">
+            <div class="year-text text-h4 text-center">
               {:year <span class="glow"> {{ item.year }}</span>}
             </div>
           </div>
@@ -31,6 +17,15 @@
     </div>
   </div>
 </template>
+
+<script>
+import Title from "./Title.vue"
+export default {
+  components: {
+    Title,
+  }
+}
+</script>
 
 <script setup>
 import {ref} from "vue";
@@ -49,20 +44,12 @@ const data = ref([
   },
 ])
 
-useFlatIconStore().set({
+useFlatIconStore().set([{
   creator: "Icons created by Freepik - Flaticon",
   url: "https://www.flaticon.com/free-icons/test",
   title: "test icons"
-})
+}])
 
-
-
-function createAnimation(index) {
-  return {
-    "animation": "fadeInLeft",
-    "animation-duration": index + 2 + "s"
-  }
-}
 
 function direct(entry) {
   router.push("/" + entry.year)
@@ -80,13 +67,9 @@ function direct(entry) {
   text-shadow: 0 0 15px green;
 }
 
-.image {
-  height: 10rem;
-  width: 10rem;
+.icon {
+  width: 100px;
+  height: 100px;
 }
 
-.image-box {
-  width: 15em;
-  text-align: center;
-}
 </style>

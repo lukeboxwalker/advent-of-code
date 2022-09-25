@@ -26,12 +26,15 @@
             </router-link>
         </div>
 
-        <div v-if="flatIcon.details" class="row justify-center">
-            <a class="text-h6" :href="flatIcon.details.url" title="test icons">
-                {{flatIcon.details.creator}}
-                <q-icon name="launch"/>
+        <div v-for="ref in flatIcon.refList">
+          <div class="row justify-center">
+            <a class="text-h6" :href="ref.url" :title="ref.title">
+              {{ref.creator}}
+              <q-icon name="launch"/>
             </a>
+          </div>
         </div>
+
     </div>
 </template>
 
@@ -46,8 +49,6 @@ import {fabGithub, fabDiscord} from '@quasar/extras/fontawesome-v6'
 import {useFlatIconStore} from "../store/flaticon";
 
 const flatIcon = useFlatIconStore()
-
-console.log(flatIcon.details)
 
 </script>
 

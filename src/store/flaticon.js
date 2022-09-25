@@ -3,12 +3,12 @@ import {ref} from 'vue'
 
 export const useFlatIconStore = defineStore('flatIcon', () => {
 
-    const details = ref(null)
+    const refList = ref([])
 
     return {
-        details,
-        set: (newDetails) => {
-            details.value = newDetails
+        refList,
+        set: (newRefList) => {
+            refList.value = newRefList
         },
     }
 })

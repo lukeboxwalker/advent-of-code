@@ -1,30 +1,30 @@
 <template>
-  <div class="text-center q-pa-xl">
-    <div>
-      <div class="glow text-h2 ">
-        Advent of Code
-      </div>
-      <div class="text-h6">
-        <span class="year-text">
-          0x{{ year }}{:/^
-        </span>
-        <span class="glow">
-          my soltuions</span>
-        <span
-            class="year-text">$/}
-        </span>
-      </div>
-    </div>
-    <div v-for="day in 24">
-      <q-card @click="direct(day)" class="animation q-ma-xl q-hoverable cursor-pointer ">
+  <div class="q-pa-xl">
+    <Title title="Advent of Code" :year="year"></Title>
+    <div v-for="(solution, day) in dayStore.days">
+      <q-card @click="direct(day + 1)" class="q-ma-xl q-hoverable cursor-pointer ">
         <q-card-section class="row">
-          <div class="col-1">
-            <img width="155" height="155" :src="'days/day' + day + '.png'" alt="Title Image">
+          <div class="col-1 ">
+            <q-img class="day" :src="'days/day' + (day + 1) + '.png'">
+
+            </q-img>
           </div>
-          <div class="col-11">
-            <div class="text-h4 text-center">
-              Day {{ day }}
+          <div class="col-10 flex flex-center">
+            <div :style="styleForDay(solution.solved)" class="text-h4 text-center">
+              {{solution.title}}
             </div>
+          </div>
+          <div class="col-1">
+            <q-img v-if="solution.part1 !== '0'" class="star1" src="/star/star.png">
+              <q-tooltip>
+                Part 1 solved
+              </q-tooltip>
+            </q-img>
+            <q-img v-if="solution.part2 !== '0'" class="star2" src="/star/star.png">
+              <q-tooltip>
+                Part 2 solved
+              </q-tooltip>
+            </q-img>
           </div>
         </q-card-section>
       </q-card>
@@ -32,37 +32,35 @@
   </div>
 </template>
 
+<script>
+import Title from "./Title.vue"
+
+export default {
+  components: {
+    Title,
+  }
+}
+</script>
+
 <script setup>
-import { useRoute } from 'vue-router';
+import {useRoute} from 'vue-router';
 import {useFlatIconStore} from "../store/flaticon";
-import {onMounted} from "vue";
+import {useDayStore} from "../store/day";
+import {ref, onMounted} from "vue";
 import router from "../router";
 
-useFlatIconStore().set({
-  creator: "Time and date icons created by rizal2109 - Flaticon",
-  url: "https://www.flaticon.com/free-icons/time-and-date",
-  title: "time and date icons"
-})
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // It's visible. Add the animation class here!
-      entry.target.classList.add("fade-animation")
-    }
-  });
-});
-
-onMounted(() => {
-  document.querySelectorAll(".animation").forEach(elem => {
-    const position = elem.getBoundingClientRect();
-    if(position.top < window.innerHeight && position.bottom >= 0) {
-      return
-    }
-    observer.observe(elem)
-  })
-
-})
+useFlatIconStore().set([
+  {
+    creator: "Time and date icons created by rizal2109 - Flaticon",
+    url: "https://www.flaticon.com/free-icons/time-and-date",
+    title: "time and date icons"
+  },
+  {
+    creator: "Star icons created by Freepik - Flaticon",
+    url: "https://www.flaticon.com/free-icons/star",
+    title: "star icons"
+  }
+])
 
 const route = useRoute()
 const year = route.path.split("/")[1]
@@ -75,19 +73,43 @@ function direct(day) {
   router.push(route.path + "/" + formattedNumber)
 }
 
+const dayStore = useDayStore()
+dayStore.setDays(year)
+
+console.log(dayStore.days)
+
+function styleForDay(solved) {
+  if (solved) {
+    return {
+      "color": "green",
+      "text-shadow": "0 0 15px green"
+    }
+  }
+  return {
+    "color": "red",
+    "text-shadow": "0 0 15px red"
+  }
+}
+
 </script>
 
 <style scoped>
-.fade-animation {
-  animation: fadeInLeft;
-  animation-duration: 1s;
-}
-.glow {
-  color: green;
-  text-shadow: 0 0 15px green;
-}
 
-.year-text {
-  color: #235030;
+.day {
+  width: 100px;
+  height: 100px;
+}
+.star1 {
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  margin: 5px;
+
+}
+.star2 {
+  width: 25px;
+  height: 25px;
+  background: transparent;
+
 }
 </style>
