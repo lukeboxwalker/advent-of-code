@@ -16,7 +16,5 @@ export default defineConfig({
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
         }
-    }, build: {
-        outDir: 'target/classes/public', assetsDir: 'static'
     }
 })
