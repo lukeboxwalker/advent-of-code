@@ -1,4 +1,4 @@
-from aoc.api import print_solution
+import aoc.api as aoc
 
 
 def read_input(filename: str) -> list:
@@ -20,4 +20,4 @@ if __name__ == '__main__':
     assert part_2(test_input) == 0
 
     my_input = read_input("input.txt")
-    print_solution(lambda: part_1(my_input), lambda: part_2(my_input))
+    aoc.print_solution(lambda: part_1(my_input), lambda: part_2(my_input))
