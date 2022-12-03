@@ -5,13 +5,7 @@ import aoc.api as aoc
 
 def read_input(filename: str) -> list:
     with open(filename, "r") as f:
-        return [list(map(priority, list(i))) for i in f.read().splitlines()]
-
-
-def priority(letter: str):
-    if letter.islower():
-        return ord(letter) - 96
-    return ord(letter) - 38
+        return [list(map(lambda x: ord(x) - (96 if x.islower() else 38), list(i))) for i in f.read().splitlines()]
 
 
 def part_1(values: list) -> int:
@@ -19,8 +13,7 @@ def part_1(values: list) -> int:
 
 
 def part_2(values: list) -> int:
-    labels = [reduce(lambda a, b: a & b, map(set, values[i:i + 3])) for i in range(0, len(values), 3)]
-    return sum(map(lambda x: x.pop(), labels))
+    return sum([reduce(lambda a, b: a & b, map(set, values[i:i + 3])).pop() for i in range(0, len(values), 3)])
 
 
 if __name__ == '__main__':
