@@ -37,11 +37,11 @@ class IntTuple(Tuple):
         super().__init__(array)
 
     @staticmethod
-    def overlaps(tuple: Tuple):
+    def overlap_other(tuple: Tuple):
         return tuple.x.overlap(tuple.y) or tuple.y.overlap(tuple.x)
 
     @staticmethod
-    def includes(tuple: Tuple):
+    def include_other(tuple: Tuple):
         return tuple.x.include(tuple.y) or tuple.y.include(tuple.x)
 
     def overlap(self, int_tuple: IntTuple):

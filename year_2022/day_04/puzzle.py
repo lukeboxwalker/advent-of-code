@@ -1,20 +1,20 @@
 from aoc.api import *
 
 
-def read_input(filename: str) -> list:
+def read_input(filename: str) -> Stream:
     return FileStream(filename).map(
         MapStream.split(",").map(
             MapStream.split("-").map(int).to(IntTuple)
         ).to(Tuple)
-    ).list()
+    )
 
 
-def part_1(values: list) -> int:
-    return Stream(values).map(IntTuple.includes).map(int).sum()
+def part_1(values: Stream) -> int:
+    return values.map(IntTuple.include_other).map(int).sum()
 
 
-def part_2(values: list) -> int:
-    return Stream(values).map(IntTuple.overlaps).map(int).sum()
+def part_2(values: Stream) -> int:
+    return values.map(IntTuple.overlap_other).map(int).sum()
 
 
 if __name__ == '__main__':
