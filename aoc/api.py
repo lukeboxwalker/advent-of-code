@@ -21,6 +21,34 @@ class String:
     def split(separator: str):
         return lambda x: x.split(separator)
 
+class Tuple:
+
+    def __init__(self, array):
+        self.x = array[0]
+        self.y = array[1]
+
+    def __repr__(self) -> str:
+        return "(" + str(self.x) + ", " + str(self.y) + ")"
+
+
+class IntTuple(Tuple):
+
+    def __init__(self, array):
+        super().__init__(array)
+
+    @staticmethod
+    def overlaps(tuple: Tuple):
+        return tuple.x.overlap(tuple.y) or tuple.y.overlap(tuple.x)
+
+    @staticmethod
+    def includes(tuple: Tuple):
+        return tuple.x.include(tuple.y) or tuple.y.include(tuple.x)
+
+    def overlap(self, int_tuple: IntTuple):
+        return int_tuple.y >= self.y >= int_tuple.x
+
+    def include(self, int_tuple: IntTuple):
+        return int_tuple.x >= self.x and int_tuple.y <= self.y
 
 class Stream:
 
@@ -50,6 +78,9 @@ class MapStream(Stream):
     @staticmethod
     def split(separator):
         return MapStream(String.split(separator))
+
+    def to(self, factory: Callable):
+        return MapStream(lambda x: factory(self.mapper(x)))
 
     def map(self, mapper: Callable | MapStream):
         if isinstance(mapper, MapStream):

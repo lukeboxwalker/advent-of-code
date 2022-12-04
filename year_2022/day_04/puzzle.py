@@ -2,21 +2,19 @@ from aoc.api import *
 
 
 def read_input(filename: str) -> list:
-    return FileStream(filename).map(MapStream.split(",").map(MapStream.split("-").map(int))).list()
+    return FileStream(filename).map(
+        MapStream.split(",").map(
+            MapStream.split("-").map(int).to(IntTuple)
+        ).to(Tuple)
+    ).list()
 
 
 def part_1(values: list) -> int:
-    def condition(x):
-        return (x[0][0] >= x[1][0] and x[0][1] <= x[1][1]) or (x[1][0] >= x[0][0] and x[1][1] <= x[0][1])
-
-    return Stream(values).map(condition).map(int).sum()
+    return Stream(values).map(IntTuple.includes).map(int).sum()
 
 
 def part_2(values: list) -> int:
-    def condition(x):
-        return x[1][1] >= x[0][1] >= x[1][0] or x[0][1] >= x[1][1] >= x[0][0]
-
-    return Stream(values).map(condition).map(int).sum()
+    return Stream(values).map(IntTuple.overlaps).map(int).sum()
 
 
 if __name__ == '__main__':
