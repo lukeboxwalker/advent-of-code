@@ -1,29 +1,22 @@
-import aoc.api as aoc
+from aoc.api import *
 
 
 def read_input(filename: str) -> list:
-    with open(filename, "r") as f:
-        return [list(map(lambda x: list(map(int, x.split("-"))), i.split(","))) for i in f.read().splitlines()]
+    return FileStream(filename).map(MapStream.split(",").map(MapStream.split("-").map(int))).list()
 
 
 def part_1(values: list) -> int:
-    count = 0
-    for value in values:
-        if value[0][0] >= value[1][0] and value[0][1] <= value[1][1]:
-            count += 1
-        elif value[1][0] >= value[0][0] and value[1][1] <= value[0][1]:
-            count += 1
-    return count
+    def condition(x):
+        return (x[0][0] >= x[1][0] and x[0][1] <= x[1][1]) or (x[1][0] >= x[0][0] and x[1][1] <= x[0][1])
+
+    return Stream(values).map(condition).map(int).sum()
 
 
 def part_2(values: list) -> int:
-    count = 0
-    for value in values:
-        if value[1][1] >= value[0][1] >= value[1][0]:
-            count += 1
-        elif value[0][1] >= value[1][1] >= value[0][0]:
-            count += 1
-    return count
+    def condition(x):
+        return x[1][1] >= x[0][1] >= x[1][0] or x[0][1] >= x[1][1] >= x[0][0]
+
+    return Stream(values).map(condition).map(int).sum()
 
 
 if __name__ == '__main__':
@@ -32,4 +25,4 @@ if __name__ == '__main__':
     assert part_2(test_input) == 4
 
     my_input = read_input("input.txt")
-    aoc.print_solution(lambda: part_1(my_input), lambda: part_2(my_input))
+    print_solution(lambda: part_1(my_input), lambda: part_2(my_input))
