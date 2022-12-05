@@ -98,6 +98,17 @@ class Stream:
     def group(self, size: int):
         return Stream([self.array[i:i + size] for i in range(0, len(self.array), size)])
 
+    def max(self):
+        return max(self.list())
+
+    def sorted(self):
+        return Stream(sorted(self.array))
+
+    def last(self, amount: int):
+        return Stream(self.array[-amount:])
+
+    def first(self, amount: int):
+        return Stream(self.array[:amount])
 
 class MapStream(Stream):
 
@@ -126,12 +137,23 @@ class MapStream(Stream):
     def reduce(self, reducer: Callable):
         return MapStream(lambda x: reduce(reducer, self.mapper(x)))
 
+    def max(self):
+        return MapStream(lambda x: max(self.mapper(x)))
+
+    def sorted(self):
+        return MapStream(lambda x: sorted(self.mapper(x)))
+
+    def last(self, amount: int):
+        return MapStream(lambda x: self.mapper(x)[-amount:])
+
+    def first(self, amount: int):
+        return MapStream(lambda x: self.mapper(x)[:amount])
 
 class FileStream(Stream):
 
-    def __init__(self, filename: str):
+    def __init__(self, filename: str, separator=None):
         with open(filename, "r") as f:
-            super().__init__(f.read().splitlines())
-
-
-
+            if separator is None:
+                super().__init__(f.read().splitlines())
+            else:
+                super().__init__(f.read().split(separator))
