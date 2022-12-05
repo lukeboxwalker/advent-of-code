@@ -81,6 +81,10 @@ class Stream:
     def __init__(self, array: List):
         self.array = array
 
+    @staticmethod
+    def split(separator):
+        return MapStream(String.split(separator))
+
     def map(self, mapper: Callable | MapStream):
         if isinstance(mapper, MapStream):
             return Stream(list(map(mapper.callable(), self.array)))
@@ -118,10 +122,6 @@ class MapStream(Stream):
     def __init__(self, mapper=lambda x: x):
         super().__init__([])
         self.mapper = mapper
-
-    @staticmethod
-    def split(separator):
-        return MapStream(String.split(separator))
 
     def to(self, factory: Callable):
         return MapStream(lambda x: factory(self.mapper(x)))

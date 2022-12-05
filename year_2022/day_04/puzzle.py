@@ -3,8 +3,8 @@ from aoc.api import *
 
 def read_input(filename: str) -> Stream:
     return FileStream(filename).map(
-        MapStream.split(",").map(
-            MapStream.split("-").map(int).to(IntTuple)
+        Stream.split(",").map(
+            Stream.split("-").map(int).to(IntTuple)
         ).to(Tuple)
     )
 

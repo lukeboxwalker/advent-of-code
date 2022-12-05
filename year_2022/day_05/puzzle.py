@@ -6,7 +6,7 @@ from aoc.api import *
 def read_input(filename: str) -> list:
     parts = FileStream(filename, "\n\n").list()
     moves = Stream(parts[1].split("\n"))\
-        .map(MapStream.split("\n").split(" ").filter(String.isdigit).map(int)).list()
+        .map(Stream.split(" ").filter(String.isdigit).map(int)).list()
     containers = list(reversed(parts[0].split("\n")))
     stacks = [[] for _ in range(sum(c.isdigit() for c in containers[0]))]
     for row in containers[1:]:
