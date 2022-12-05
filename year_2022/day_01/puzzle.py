@@ -2,7 +2,7 @@ from aoc.api import *
 
 
 def read_input(filename: str) -> Stream:
-    return FileStream(filename, "\n\n").map(MapStream.split("\n").map(int)).list()
+    return FileStream(filename, "\n\n").map(MapStream.split("\n").map(int))
 
 
 def part_1(values: Stream) -> int:
