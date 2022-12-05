@@ -32,6 +32,10 @@ class Set:
 class String:
 
     @staticmethod
+    def isdigit(string: str):
+        return string.isdigit()
+
+    @staticmethod
     def split(separator: str):
         return lambda x: x.split(separator)
 
@@ -77,9 +81,6 @@ class Stream:
     def __init__(self, array: List):
         self.array = array
 
-    def map_in_stream(self):
-        return self.map(lambda x: Stream(x))
-
     def map(self, mapper: Callable | MapStream):
         if isinstance(mapper, MapStream):
             return Stream(list(map(mapper.callable(), self.array)))
@@ -109,6 +110,9 @@ class Stream:
     def first(self, amount: int):
         return Stream(self.array[:amount])
 
+    def filter(self, predicate: Callable):
+        return Stream(list(filter(predicate, self.array)))
+
 class MapStream(Stream):
 
     def __init__(self, mapper=lambda x: x):
@@ -134,7 +138,7 @@ class MapStream(Stream):
         return self.mapper
 
     def reduce(self, reducer: Callable):
-        return MapStream(lambda x: reduce(reducer, self.mapper(x)))
+        return lambda x: reduce(reducer, self.mapper(x))
 
     def max(self):
         return MapStream(lambda x: max(self.mapper(x)))
@@ -147,6 +151,9 @@ class MapStream(Stream):
 
     def first(self, amount: int):
         return MapStream(lambda x: self.mapper(x)[:amount])
+
+    def filter(self, predicate: Callable):
+        return MapStream(lambda x: (list(filter(predicate, self.mapper(x)))))
 
 class FileStream(Stream):
 
