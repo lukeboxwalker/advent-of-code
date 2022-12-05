@@ -1,19 +1,22 @@
-from functools import reduce
-
-import aoc.api as aoc
+from aoc.api import *
 
 
-def read_input(filename: str) -> list:
-    with open(filename, "r") as f:
-        return [list(map(lambda x: ord(x) - (96 if x.islower() else 38), list(i))) for i in f.read().splitlines()]
+def read_input(filename: str) -> Stream:
+    return FileStream(filename).map(
+        MapStream(list).map(ord).map(lambda x: x - 96 if x > 90 else x - 38)
+    )
 
 
-def part_1(values: list) -> int:
-    return sum(map(lambda x: (set(x[:len(x) // 2]) & set(x[len(x) // 2:])).pop(), values))
+def part_1(values: Stream) -> int:
+    return values.map(
+        MapStream(String.divide).map(set).reduce(Set.intersection)
+    ).map(Set.pop).sum()
 
 
-def part_2(values: list) -> int:
-    return sum([reduce(lambda a, b: a & b, map(set, values[i:i + 3])).pop() for i in range(0, len(values), 3)])
+def part_2(values: Stream) -> int:
+    return values.group(3).map(
+        MapStream().map(set).reduce(Set.intersection)
+    ).map(Set.pop).sum()
 
 
 if __name__ == '__main__':
@@ -22,4 +25,4 @@ if __name__ == '__main__':
     assert part_2(test_input) == 70
 
     my_input = read_input("input.txt")
-    aoc.print_solution(lambda: part_1(my_input), lambda: part_2(my_input))
+    print_solution(lambda: part_1(my_input), lambda: part_2(my_input))

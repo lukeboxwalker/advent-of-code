@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 from collections import Callable
+from functools import reduce
 from timeit import timeit
 from typing import List
 
@@ -15,11 +16,29 @@ def print_solution(part_1, part_2):
     print(f"Part 1: {solution_1}, Timing: %.2f ms" % (1000 * timeit(part_1, number=1)))
     print(f"Part 2: {solution_2}, Timing: %.2f ms" % (1000 * timeit(part_2, number=1)))
 
+class Set:
+
+    @staticmethod
+    def union(a: set, b: set):
+        return a | b
+
+    @staticmethod
+    def intersection(a: set, b: set):
+        return a & b
+
+    @staticmethod
+    def pop(a: set):
+        return a.pop()
+
 class String:
 
     @staticmethod
     def split(separator: str):
         return lambda x: x.split(separator)
+
+    @staticmethod
+    def divide(string: str):
+        return [string[:len(string) // 2], string[len(string) // 2:]]
 
 class Tuple:
 
@@ -69,9 +88,16 @@ class Stream:
     def sum(self):
         return sum(self.list())
 
+    def reduce(self, reducer: Callable):
+        return reduce(reducer, self.list())
+
+    def group(self, size: int):
+        return Stream([self.array[i:i + size] for i in range(0, len(self.array), size)])
+
+
 class MapStream(Stream):
 
-    def __init__(self, mapper: Callable):
+    def __init__(self, mapper=lambda x: x):
         super().__init__([])
         self.mapper = mapper
 
@@ -92,6 +118,9 @@ class MapStream(Stream):
 
     def callable(self):
         return self.mapper
+
+    def reduce(self, reducer: Callable):
+        return MapStream(lambda x: reduce(reducer, self.mapper(x)))
 
 
 class FileStream(Stream):
