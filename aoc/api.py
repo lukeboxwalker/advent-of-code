@@ -37,6 +37,10 @@ class String:
         return lambda x: x.split(separator)
 
     @staticmethod
+    def replace(sequence: str, replace: str):
+        return lambda x: x.replace(sequence, replace)
+
+    @staticmethod
     def divide(string: str):
         return [string[:len(string) // 2], string[len(string) // 2:]]
 
