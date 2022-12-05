@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 import sys
-from collections import Callable
 from functools import reduce
 from timeit import timeit
-from typing import List
+from typing import List, Callable
 
 
 def print_solution(part_1, part_2):
