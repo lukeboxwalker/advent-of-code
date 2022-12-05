@@ -12,15 +12,15 @@ Santa's reindeer typically eat regular reindeer food, but they need a lot of [ma
 
 ## Overview 🌟
 
-Collected stars: 6 ★
+Collected stars: 10 ★
 
 | Day | Part 1 | Part 2 |
 | :--- | :---: | :---: |
 | 01 | ✔ | ✔ |
 | 02 | ✔ | ✔ |
 | 03 | ✔ | ✔ |
-| 04 |  |  |
-| 05 |  |  |
+| 04 | ✔ | ✔ |
+| 05 | ✔ | ✔ |
 | 06 |  |  |
 | 07 |  |  |
 | 08 |  |  |
