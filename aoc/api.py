@@ -3,7 +3,7 @@ from __future__ import annotations
 import sys
 from functools import reduce
 from timeit import timeit
-from typing import List, Callable
+from typing import Callable
 
 
 def print_solution(part_1, part_2):
@@ -47,6 +47,10 @@ class String:
     def divide(string: str):
         return [string[:len(string) // 2], string[len(string) // 2:]]
 
+    @staticmethod
+    def concat(a: str, b: str):
+        return a + b
+
 class Tuple:
 
     def __init__(self, array):
@@ -78,7 +82,7 @@ class IntTuple(Tuple):
 
 class Stream:
 
-    def __init__(self, array: List):
+    def __init__(self, array):
         self.array = array
 
     @staticmethod
@@ -107,6 +111,9 @@ class Stream:
 
     def sorted(self):
         return Stream(sorted(self.array))
+
+    def reversed(self):
+        return Stream(list(reversed(self.array)))
 
     def last(self, amount: int):
         return Stream(self.array[-amount:])
@@ -146,6 +153,9 @@ class MapStream(Stream):
     def sorted(self):
         return MapStream(lambda x: sorted(self.mapper(x)))
 
+    def reversed(self):
+        return MapStream(lambda x: list(reversed(self.mapper(x))))
+
     def last(self, amount: int):
         return MapStream(lambda x: self.mapper(x)[-amount:])
 
@@ -154,6 +164,11 @@ class MapStream(Stream):
 
     def filter(self, predicate: Callable):
         return MapStream(lambda x: (list(filter(predicate, self.mapper(x)))))
+
+class IntStream(Stream):
+
+    def __init__(self, stop, start=0, step=1):
+        super().__init__(range(start, stop, step))
 
 class FileStream(Stream):
 

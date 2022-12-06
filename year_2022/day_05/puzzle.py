@@ -5,10 +5,11 @@ from aoc.api import *
 
 def read_input(filename: str) -> list:
     parts = FileStream(filename, "\n\n").list()
-    moves = Stream(parts[1].split("\n"))\
-        .map(Stream.split(" ").filter(String.isdigit).map(int)).list()
-    containers = list(reversed(parts[0].split("\n")))
-    stacks = [[] for _ in range(sum(c.isdigit() for c in containers[0]))]
+    moves = Stream(parts[1].split("\n")).map(
+        MapStream(String.split(" ")).filter(String.isdigit).map(int)
+    ).list()
+    containers = Stream(parts[0].split("\n")).reversed().list()
+    stacks = Stream(containers[0]).filter(String.isdigit).map(lambda x: list()).list()
     for row in containers[1:]:
         idx = 0
         for i in range(1, len(row), 4):
@@ -23,7 +24,7 @@ def part_1(values: list) -> str:
     for move in values[1]:
         for _ in range(move[0]):
             stacks[move[2] - 1].append(stacks[move[1] - 1].pop())
-    return "".join([i.pop() if i else "" for i in stacks])
+    return Stream(stacks).map(Set.pop).reduce(String.concat)
 
 
 def part_2(values: list) -> str:
@@ -33,7 +34,8 @@ def part_2(values: list) -> str:
         for _ in range(move[0]):
             new.append(stacks[move[1] - 1].pop())
         stacks[move[2] - 1].extend(reversed(new))
-    return "".join([i.pop() if i else "" for i in stacks])
+
+    return Stream(stacks).map(Set.pop).reduce(String.concat)
 
 
 if __name__ == '__main__':
