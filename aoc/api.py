@@ -109,6 +109,9 @@ class Stream:
     def max(self):
         return max(self.list())
 
+    def min(self):
+        return min(self.list())
+
     def sorted(self):
         return Stream(sorted(self.array))
 
