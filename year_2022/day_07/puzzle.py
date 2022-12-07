@@ -1,62 +1,26 @@
 from aoc.api import *
 
-class Leaf:
 
-    def __init__(self, name, parent, size):
-        self.name = name
-        self.parent = parent
-        self.size = size
-
-class Node:
-
-    def __init__(self, name, parent):
-        self.name = name
-        self.parent = parent
-        self.children = dict()
-
-    def add_child(self, node):
-        self.children[node.name] = node
-
-    @property
-    def size(self):
-        return sum([child.size for child in self.children.values()])
-
-
-def read_input(filename: str) -> Node:
-    root = Node("root", None)
-    root.add_child(Node("/", root))
-    current = root
+def read_input(filename: str) -> dict:
+    disc_size, stack = {'/': 0}, []
     with open(filename, "r") as f:
-        for line in f.read().splitlines():
+        for line in f.read().replace("$ ls\n", "").split("\n"):
             if line.startswith("$ cd"):
-                if line.split(" ")[-1] == "..":
-                    current = current.parent
-                else:
-                    current = current.children[line.split(" ")[-1]]
-            elif line.startswith("$ ls"):
-                continue
+                stack.pop() if line.split(" ")[-1] == ".." else stack.append(line.split(" ")[-1])
             elif line.startswith("dir"):
-                current.add_child(Node(line.split(" ")[1], current))
+                disc_size["".join(stack) + line.split(" ")[1]] = 0
             else:
-                data = line.split(" ")
-                current.add_child(Leaf(data[1], current, int(data[0])))
-    return root.children["/"]
-
-def collect_sizes(node, sizes=None):
-    if sizes is None:
-        sizes = []
-    if hasattr(node, "children"):
-        sizes.append(node.size)
-        for child in node.children.values():
-            collect_sizes(child, sizes)
-        return sizes
+                for i in range(len(stack)):
+                    disc_size["".join(stack[:i]) + stack[i]] += int(line.split(" ")[0])
+    return disc_size
 
 
-def part_1(node: Node) -> int:
-    return Stream(collect_sizes(node)).filter(lambda x: x < 100_000).sum()
+def part_1(disc: dict) -> int:
+    return Stream(disc.values()).filter(lambda x: x < 100_000).sum()
 
-def part_2(node: Node) -> int:
-    return Stream(collect_sizes(node)).filter(lambda x: x > node.size - 40_000_000).min()
+
+def part_2(disc: dict) -> int:
+    return Stream(disc.values()).filter(lambda x: x > disc["/"] - 40_000_000).min()
 
 
 if __name__ == '__main__':

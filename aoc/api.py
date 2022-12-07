@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import sys
 from functools import reduce
 from timeit import timeit
@@ -74,10 +72,10 @@ class IntTuple(Tuple):
     def include_other(tuple: Tuple):
         return tuple.x.include(tuple.y) or tuple.y.include(tuple.x)
 
-    def overlap(self, int_tuple: IntTuple):
+    def overlap(self, int_tuple):
         return int_tuple.y >= self.y >= int_tuple.x
 
-    def include(self, int_tuple: IntTuple):
+    def include(self, int_tuple):
         return int_tuple.x >= self.x and int_tuple.y <= self.y
 
 class Stream:
@@ -89,7 +87,7 @@ class Stream:
     def split(separator):
         return MapStream(String.split(separator))
 
-    def map(self, mapper: Callable | MapStream):
+    def map(self, mapper):
         if isinstance(mapper, MapStream):
             return Stream(list(map(mapper.callable(), self.array)))
         return Stream(list(map(mapper, self.array)))
@@ -127,6 +125,10 @@ class Stream:
     def filter(self, predicate: Callable):
         return Stream(list(filter(predicate, self.array)))
 
+    def foreach(self, consumer: Callable):
+        for i in self.list():
+            consumer(i)
+
 class MapStream(Stream):
 
     def __init__(self, mapper=lambda x: x):
@@ -136,7 +138,7 @@ class MapStream(Stream):
     def to(self, factory: Callable):
         return MapStream(lambda x: factory(self.mapper(x)))
 
-    def map(self, mapper: Callable | MapStream):
+    def map(self, mapper):
         if isinstance(mapper, MapStream):
             return MapStream(lambda x: list(map(mapper.callable(), self.mapper(x))))
         return MapStream(lambda x: list(map(mapper, self.mapper(x))))
