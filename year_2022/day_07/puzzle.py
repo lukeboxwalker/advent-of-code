@@ -2,17 +2,17 @@ from aoc.api import *
 
 
 def read_input(filename: str) -> dict:
-    disc_size, stack = {'/': 0}, []
+    disc, stack = {'/': 0}, []
     with open(filename, "r") as f:
         for line in f.read().replace("$ ls\n", "").split("\n"):
             if line.startswith("$ cd"):
                 stack.pop() if line.split(" ")[-1] == ".." else stack.append(line.split(" ")[-1])
             elif line.startswith("dir"):
-                disc_size["".join(stack) + line.split(" ")[1]] = 0
+                disc["".join(stack) + line.split(" ")[1]] = 0
             else:
                 for i in range(len(stack)):
-                    disc_size["".join(stack[:i]) + stack[i]] += int(line.split(" ")[0])
-    return disc_size
+                    disc["".join(stack[:i]) + stack[i]] += int(line.split(" ")[0])
+    return disc
 
 
 def part_1(disc: dict) -> int:
