@@ -1,7 +1,7 @@
 from aoc.api import *
 
 
-def read_input(filename: str) -> dict:
+def read_input(filename: str) -> list:
     disc, stack = {'/': 0}, []
     with open(filename, "r") as f:
         for line in f.read().replace("$ ls\n", "").split("\n"):
@@ -12,15 +12,15 @@ def read_input(filename: str) -> dict:
             else:
                 for i in range(len(stack)):
                     disc["".join(stack[:i]) + stack[i]] += int(line.split(" ")[0])
-    return disc
+    return sorted(disc.values())
 
 
-def part_1(disc: dict) -> int:
-    return Stream(disc.values()).filter(lambda x: x < 100_000).sum()
+def part_1(disc: list) -> int:
+    return sum(filter(lambda x: x < 100_000, disc))
 
 
-def part_2(disc: dict) -> int:
-    return Stream(disc.values()).filter(lambda x: x > disc["/"] - 40_000_000).min()
+def part_2(disc: list) -> int:
+    return min(filter(lambda x: x > disc[-1] - 40_000_000, disc))
 
 
 if __name__ == '__main__':
