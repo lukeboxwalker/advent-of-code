@@ -1,0 +1,31 @@
+
+<h1>Day 8: Treetop Tree House 🎄</h1><p>Copyright (c) Eric Wastl</p><a href=https://adventofcode.com/2022/day/8>Link to Day 8</a><h2>Part One 🎁</h2><p>The expedition comes across a peculiar patch of tall trees all planted carefully in a grid. The Elves explain that a previous expedition planted these trees as a reforestation effort. Now, they're curious if this would be a good location for a <a href="https://en.wikipedia.org/wiki/Tree_house" target="_blank">tree house</a>.</p>
+<p>First, determine whether there is enough tree cover here to keep a tree house <b>hidden</b>. To do this, you need to count the number of trees that are <b>visible from outside the grid</b> when looking directly along a row or column.</p>
+<p>The Elves have already launched a <a href="https://en.wikipedia.org/wiki/Quadcopter" target="_blank">quadcopter</a> to generate a map with the height of each tree (<span title="The Elves have already launched a quadcopter (your puzzle input).">your puzzle input</span>). For example:</p>
+<pre><code>30373
+25512
+65332
+33549
+35390
+</code></pre>
+<p>Each tree is represented as a single digit whose value is its height, where <code>0</code> is the shortest and <code>9</code> is the tallest.</p>
+<p>A tree is <b>visible</b> if all of the other trees between it and an edge of the grid are <b>shorter</b> than it. Only consider trees in the same row or column; that is, only look up, down, left, or right from any given tree.</p>
+<p>All of the trees around the edge of the grid are <b>visible</b> - since they are already on the edge, there are no trees to block the view. In this example, that only leaves the <b>interior nine trees</b> to consider:</p>
+<ul>
+<li>The top-left <code>5</code> is <b>visible</b> from the left and top. (It isn't visible from the right or bottom since other trees of height <code>5</code> are in the way.)</li>
+<li>The top-middle <code>5</code> is <b>visible</b> from the top and right.</li>
+<li>The top-right <code>1</code> is not visible from any direction; for it to be visible, there would need to only be trees of height <b>0</b> between it and an edge.</li>
+<li>The left-middle <code>5</code> is <b>visible</b>, but only from the right.</li>
+<li>The center <code>3</code> is not visible from any direction; for it to be visible, there would need to be only trees of at most height <code>2</code> between it and an edge.</li>
+<li>The right-middle <code>3</code> is <b>visible</b> from the right.</li>
+<li>In the bottom row, the middle <code>5</code> is <b>visible</b>, but the <code>3</code> and <code>4</code> are not.</li>
+</ul>
+<p>With 16 trees visible on the edge and another 5 visible in the interior, a total of <code><b>21</b></code> trees are visible in this arrangement.</p>
+<p>Consider your map; <b>how many trees are visible from outside the grid?</b></p>
+
+<p>To begin, <a href="8/input" target="_blank">get your puzzle input</a>.</p>
+<form method="post" action="8/answer"><input type="hidden" name="level" value="1"/><p>Answer: <input type="text" name="answer" autocomplete="off"/> <input type="submit" value="[Submit]"/></p></form>
+<p>You can also <span class="share">[Share<span class="share-content">on
+  <a href="https://twitter.com/intent/tweet?text=%22Treetop+Tree+House%22+%2D+Day+8+%2D+Advent+of+Code+2022&amp;url=https%3A%2F%2Fadventofcode%2Ecom%2F2022%2Fday%2F8&amp;related=ericwastl&amp;hashtags=AdventOfCode" target="_blank">Twitter</a>
+  <a href="javascript:void(0);" onclick="var mastodon_instance=prompt('Mastodon Instance / Server Name?'); if(typeof mastodon_instance==='string' && mastodon_instance.length){this.href='https://'+mastodon_instance+'/share?text=%22Treetop+Tree+House%22+%2D+Day+8+%2D+Advent+of+Code+2022+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2022%2Fday%2F8'}else{return false;}" target="_blank">Mastodon</a
+></span>]</span> this puzzle.</p>

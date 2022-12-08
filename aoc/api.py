@@ -125,6 +125,9 @@ class Stream:
     def filter(self, predicate: Callable):
         return Stream(list(filter(predicate, self.array)))
 
+    def count(self):
+        return len(self.list())
+
     def foreach(self, consumer: Callable):
         for i in self.list():
             consumer(i)
