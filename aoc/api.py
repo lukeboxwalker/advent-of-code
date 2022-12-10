@@ -46,8 +46,8 @@ class String:
         return [string[:len(string) // 2], string[len(string) // 2:]]
 
     @staticmethod
-    def concat(a: str, b: str):
-        return a + b
+    def concat(separator=""):
+        return lambda a, b: a + separator + b
 
 class Tuple:
 
