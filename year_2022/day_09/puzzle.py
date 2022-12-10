@@ -1,5 +1,7 @@
 import numpy as np
 
+from aoc.api import *
+
 
 def read_input(filename: str) -> list:
     with open(filename, "r") as f:
@@ -10,44 +12,32 @@ def read_input(filename: str) -> list:
                 moves.append(actions[value[0]])
         return moves
 
-
-def part_1(values: list) -> int:
-    head = np.array([0, 0])
-    tail = np.array([0, 0])
+def solve(values: list, length: int):
+    rope = [np.array([0, 0]) for _ in range(length)]
     positions = {(0, 0)}
     for move in values:
-        head += move
-        if np.linalg.norm(head - tail) > 1.5:
-            change = (head - move) - tail
-            tail += change
-            positions.add(tuple(tail))
+        rope[0] += move
+        for i in range(1, length):
+            if np.linalg.norm(rope[i - 1] - rope[i]) > 1.5:
+                change = rope[i - 1] - rope[i]
+                change[0] = change[0] / 2 if abs(change[0]) == 2 else change[0]
+                change[1] = change[1] / 2 if abs(change[1]) == 2 else change[1]
+                rope[i] += change
+        positions.add(tuple(rope[length - 1]))
     return len(positions)
+
+def part_1(values: list) -> int:
+    return solve(values, 2)
 
 
 def part_2(values: list) -> int:
-    head = np.array([0, 0])
-    rope = [np.array([0, 0]) for _ in range(9)]
-    positions = {(0, 0)}
-    for move in values:
-        head += move
-        if np.linalg.norm(head - rope[0]) > 1.5:
-            change = (head - move) - rope[0]
-            rope[0] += change
-            for i in range(1, 9):
-                if np.linalg.norm(rope[i - 1] - rope[i]) > 1.5:
-                    change = (rope[i - 1] - change) - rope[i]
-                    rope[i] += change
-            positions.add(tuple(rope[8]))
-    print(len(positions))
-    return 0
+    return solve(values, 10)
 
 
 if __name__ == '__main__':
     test_input = read_input("test_input.txt")
-    #assert part_1(test_input) == 13
-    assert part_2(test_input) == 0
+    assert part_1(test_input) == 13
+    assert part_2(test_input) == 1
 
-    # my_input = read_input("input.txt")
-    # print_solution(lambda: part_1(my_input), lambda: part_2(my_input))
-
-
+    my_input = read_input("input.txt")
+    print_solution(lambda: part_1(my_input), lambda: part_2(my_input))
