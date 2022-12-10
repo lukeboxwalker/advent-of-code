@@ -24,7 +24,7 @@ def part_1(values: list) -> str:
     for move in values[1]:
         for _ in range(move[0]):
             stacks[move[2] - 1].append(stacks[move[1] - 1].pop())
-    return Stream(stacks).map(Set.pop).reduce(String.concat)
+    return Stream(stacks).map(Set.pop).reduce(String.concat())
 
 
 def part_2(values: list) -> str:
@@ -35,7 +35,7 @@ def part_2(values: list) -> str:
             new.append(stacks[move[1] - 1].pop())
         stacks[move[2] - 1].extend(reversed(new))
 
-    return Stream(stacks).map(Set.pop).reduce(String.concat)
+    return Stream(stacks).map(Set.pop).reduce(String.concat())
 
 
 if __name__ == '__main__':
