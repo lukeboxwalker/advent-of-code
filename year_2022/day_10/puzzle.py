@@ -33,7 +33,7 @@ def part_2(values: list) -> str:
                 img[cycle // 40 + 2, cycle % 40 + 2] = 0
             cycle += 1
         rax += value[1]
-    img = cv.resize(img, (800, 120))
+    img = cv.resize(img, (420, 80))
     img = cv.threshold(img, 180, 255, cv.THRESH_BINARY)[1]
     img = Image.fromarray(img)
     text = pytesseract.image_to_string(img)
