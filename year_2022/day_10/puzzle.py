@@ -1,7 +1,7 @@
-import numpy as np
-import pytesseract as pytesseract
-from PIL import Image
 import cv2 as cv
+import numpy as np
+from PIL import Image
+from pytesseract import image_to_string
 
 from aoc.api import *
 
@@ -24,9 +24,7 @@ def part_1(values: list) -> int:
 
 
 def part_2(values: list) -> str:
-    cycle = 0
-    rax = 1
-    img = np.full((10, 42), 255, np.uint8)
+    cycle, rax, img = 0, 1, np.full((10, 42), 255, np.uint8)
     for value in values:
         for i in range(value[0]):
             if rax + 2 > cycle % 40 > rax - 2:
@@ -36,7 +34,7 @@ def part_2(values: list) -> str:
     img = cv.resize(img, (420, 80))
     img = cv.threshold(img, 180, 255, cv.THRESH_BINARY)[1]
     img = Image.fromarray(img)
-    text = pytesseract.image_to_string(img)
+    text = image_to_string(img)
     return "".join(list(filter(lambda c: c.isalpha(), text)))
 
 

@@ -1,11 +1,6 @@
 import copy
 
 import numpy as np
-import pytesseract as pytesseract
-from PIL import Image
-import cv2 as cv
-
-from aoc.api import *
 
 
 class Monkey:
