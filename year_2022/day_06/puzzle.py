@@ -19,9 +19,8 @@ def part_2(values: list) -> int:
 
 
 if __name__ == '__main__':
-    test_input = read_input("test_input.txt")
-    assert part_1(test_input) == 7
-    assert part_2(test_input) == 19
+    assert part_1(read_input("test_input.txt")) == 7
+    assert part_2(read_input("test_input.txt")) == 19
 
-    my_input = read_input("input.txt")
-    print_solution(lambda: part_1(my_input), lambda: part_2(my_input))
+    print("Part 1:", format_solution(lambda: part_1(read_input("input.txt"))))
+    print("Part 2:", format_solution(lambda: part_2(read_input("input.txt"))))
