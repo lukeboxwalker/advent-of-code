@@ -2,6 +2,8 @@ import time
 from functools import reduce
 from typing import Callable
 
+import numpy as np
+
 
 class Set:
 
@@ -84,6 +86,9 @@ class Stream:
 
     def list(self):
         return self.array
+
+    def ndarray(self):
+        return np.array(self.list())
 
     def sum(self):
         return sum(self.list())
