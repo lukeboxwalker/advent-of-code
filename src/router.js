@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from "vue-router";
+import {createRouter, createWebHashHistory, createWebHistory} from "vue-router";
 import YearOverview from "./components/YearOverview.vue";
 import DayOverview from "./components/DayOverview.vue";
 import Day from "./components/Day.vue";
@@ -30,7 +30,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes
 })
 

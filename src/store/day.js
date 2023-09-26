@@ -51,13 +51,21 @@ export const useDayStore = defineStore('day', () => {
         days,
         setDays: (year) => {
             days.value = []
-            return new Promise((resolve, reject) => {
-                getSolutions(year).then(() => {
-                    resolve()
-                }).catch(() => {
-                    reject()
+            for (let i = 1; i < 25; i++) {
+                let data = {
+                    solved: false,
+                    part1: "0",
+                    part2: "0",
+                    title: "Day " + i + ": Loading..."
+                }
+                days.value.push(data);
+                getSolution(year, i).then(res => {
+                    data.solved = res.solved;
+                    data.part1 = res.part1;
+                    data.part2 = res.part2;
+                    data.title = res.title;
                 })
-            })
+            }
         },
     }
 })
