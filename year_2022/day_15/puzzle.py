@@ -1,5 +1,7 @@
 from aoc.api import *
 
+def read_extra_input(filename: str) -> list:
+    return FileStream(filename).map(int).list()
 
 def read_input(filename: str) -> list:
     with open(filename, "r") as f:
@@ -49,7 +51,8 @@ def combine_ranges(a, b):
         return a[0], b[1]
     return a
 
-def part_1(values: list, y: int) -> int:
+def part_1(values: list, extra: list) -> int:
+    y = extra[0]
     blocked = set()
     for value in values:
         blocked.add(value[0])
@@ -64,7 +67,8 @@ def part_1(values: list, y: int) -> int:
     return count
 
 
-def part_2(values: list, bounds: int) -> int:
+def part_2(values: list, extra: list) -> int:
+    bounds = extra[1]
     for y in range(bounds):
         blocked = blocked_ranges(values, y)
         if len(blocked) == 2:
@@ -77,9 +81,13 @@ def part_2(values: list, bounds: int) -> int:
 
 
 if __name__ == '__main__':
-    assert part_1(read_input("test_input.txt"), 10) == 26
-    assert part_2(read_input("test_input.txt"), 20) == 56000011
+    test_input = read_input("test_input.txt")
+    text_extra_input = read_extra_input("extra_test.txt")
+    assert part_1(test_input, text_extra_input) == 26
+    assert part_2(test_input, text_extra_input) == 56000011
 
-    print("Part 1:", format_solution(lambda: part_1(read_input("input.txt"), 2_000_000)))
-    print("Part 2:", format_solution(lambda: part_2(read_input("input.txt"), 4_000_000)))
+    input = read_input("input.txt")
+    extra_input = read_extra_input("extra_input.txt")
+    print("Part 1:", format_solution(lambda: part_1(input, extra_input)))
+    print("Part 2:", format_solution(lambda: part_2(input, extra_input)))
 
