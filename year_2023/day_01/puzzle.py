@@ -5,12 +5,13 @@ def read_input(filename: str) -> list:
     return FileStream(filename).list()
 
 
+def first_and_last_digit(val):
+    digits = [i for i in val if str.isdigit(i)]
+    return int(digits[0] + digits[-1])
+
+
 def part_1(values: list) -> int:
-    result = 0
-    for val in values:
-        numbers = [i for i in val if str.isdigit(i)]
-        result += int(numbers[0] + numbers[-1])
-    return result
+    return sum([first_and_last_digit(val) for val in values])
 
 
 string_numbers = {
@@ -35,6 +36,7 @@ def find_first_digit(val):
             if sub_string in string_numbers:
                 return str(string_numbers[sub_string])
 
+
 def find_last_digit(val):
     for i in range(len(val) - 1, -1, -1):
         if str.isdigit(val[i]):
@@ -46,10 +48,7 @@ def find_last_digit(val):
 
 
 def part_2(values: list) -> int:
-    values_only_ints = []
-    for val in values:
-        values_only_ints.append(int(find_first_digit(val) + find_last_digit(val)))
-    return sum(values_only_ints)
+    return sum([int(find_first_digit(val) + find_last_digit(val)) for val in values])
 
 
 if __name__ == '__main__':
