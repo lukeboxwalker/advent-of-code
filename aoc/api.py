@@ -4,6 +4,39 @@ from typing import Callable
 
 import numpy as np
 
+def prod(values: iter):
+    if not values:
+        return 0
+    product = 1
+    for value in values:
+        product *= value
+    return product
+
+class Foreach:
+
+    def __init__(self, end, start=0, step=1):
+        self.current = None
+        self.step = step
+        self.start = start
+        self.end = end
+
+    def __iter__(self):
+        self.current = self.start
+        return self
+
+    def __next__(self):
+        if self.current + self.step <= self.end:
+            x = self.current
+            self.current += self.step
+            return x
+        else:
+            raise StopIteration
+
+    def break_iteration(self):
+        self.current = self.end
+
+    def set(self, current):
+        self.current = current
 
 class Set:
 
