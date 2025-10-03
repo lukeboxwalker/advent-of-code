@@ -44,5 +44,5 @@ class PuzzleTest(unittest.TestCase):
                 solution1 = int(solution1)
             if solution2.isdigit():
                 solution2 = int(solution2)
-        self.assertEqual(part_1(*params_1), solution1)
-        self.assertEqual(part_2(*params_2), solution2)
+        self.assertEqual(part_1(*params_1), solution1, day_path + " part1")
+        self.assertEqual(part_2(*params_2), solution2, day_path + " part2")

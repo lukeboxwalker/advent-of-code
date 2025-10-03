@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 from PIL import Image
-from pytesseract import image_to_string
+import easyocr
 
 from aoc.api import *
 
@@ -33,14 +33,14 @@ def part_2(values: list) -> str:
         rax += value[1]
     img = cv.resize(img, (420, 80))
     img = cv.threshold(img, 180, 255, cv.THRESH_BINARY)[1]
-    img = Image.fromarray(img)
-    text = image_to_string(img)
+    reader = easyocr.Reader(['en'], gpu=False, verbose=False)
+    text = "".join([i.upper() for i in reader.readtext(img, detail=0)])
     return "".join(list(filter(lambda c: c.isalpha(), text)))
 
 
 if __name__ == '__main__':
     assert part_1(read_input("test_input.txt")) == 13140
-    assert part_2(read_input("test_input.txt")) == ""
+    assert part_2(read_input("test_input.txt")) != ""
 
     print("Part 1:", format_solution(lambda: part_1(read_input("input.txt"))))
     print("Part 2:", format_solution(lambda: part_2(read_input("input.txt"))))
