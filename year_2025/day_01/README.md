@@ -42,7 +42,6 @@ L82
 <p>Because the dial points at <code>0</code> a total of three times during this process, the password in this example is <code><b>3</b></code>.</p>
 <p>Analyze the rotations in your attached document. <b>What's the actual password to open the door?</b></p>
 
-<p class="day-success">The first half of this puzzle is complete! It provides one gold star: *</p>
 <h2>Part Two 🎁</h2><p>You're sure that's the right password, but the door won't open. You knock, but nobody answers. You build a snowman while you think.</p>
 <p>As you're rolling the snowballs for your snowman, you find another security document that must have fallen into the snow:</p>
 <p>"Due to newer security protocols, please use <b>password method <span title="You should have seen the chaos when the Elves overflowed their 32-bit password method counter.">0x434C49434B</span></b> until further notice."</p>
@@ -65,10 +64,11 @@ L82
 <p>Be careful: if the dial were pointing at <code>50</code>, a single rotation like <code>R1000</code> would cause the dial to point at <code>0</code> ten times before returning back to <code>50</code>!</p>
 <p>Using password method 0x434C49434B, <b>what is the password to open the door?</b></p>
 
-<form method="post" action="1/answer"><input type="hidden" name="level" value="2"/><p>Answer: <input type="text" name="answer" autocomplete="off"/> <input type="submit" value="[Submit]"/></p></form>
-<p>Although it hasn't changed, you can still <a href="1/input" target="_blank">get your puzzle input</a>.</p>
+<p class="day-success">Both parts of this puzzle are complete! They provide two gold stars: **</p>
+<p>At this point, you should <a href="/2025">return to your Advent calendar</a> and try another puzzle.</p>
+<p>If you still want to see it, you can <a href="1/input" target="_blank">get your puzzle input</a>.</p>
 <p>You can also <span class="share">[Share<span class="share-content">on
-  <a href="https://bsky.app/intent/compose?text=I%27ve+completed+Part+One+of+%22Secret+Entrance%22+%2D+Day+1+%2D+Advent+of+Code+2025+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F1" target="_blank">Bluesky</a>
-  <a href="https://twitter.com/intent/tweet?text=I%27ve+completed+Part+One+of+%22Secret+Entrance%22+%2D+Day+1+%2D+Advent+of+Code+2025&amp;url=https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F1&amp;related=ericwastl&amp;hashtags=AdventOfCode" target="_blank">Twitter</a>
-  <a href="javascript:void(0);" onclick="var ms; try{ms=localStorage.getItem('mastodon.server')}finally{} if(typeof ms!=='string')ms=''; ms=prompt('Mastodon Server?',ms); if(typeof ms==='string' && ms.length){this.href='https://'+ms+'/share?text=I%27ve+completed+Part+One+of+%22Secret+Entrance%22+%2D+Day+1+%2D+Advent+of+Code+2025+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F1';try{localStorage.setItem('mastodon.server',ms);}finally{}}else{return false;}" target="_blank">Mastodon</a
+  <a href="https://bsky.app/intent/compose?text=I%27ve+completed+%22Secret+Entrance%22+%2D+Day+1+%2D+Advent+of+Code+2025+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F1" target="_blank">Bluesky</a>
+  <a href="https://twitter.com/intent/tweet?text=I%27ve+completed+%22Secret+Entrance%22+%2D+Day+1+%2D+Advent+of+Code+2025&amp;url=https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F1&amp;related=ericwastl&amp;hashtags=AdventOfCode" target="_blank">Twitter</a>
+  <a href="javascript:void(0);" onclick="var ms; try{ms=localStorage.getItem('mastodon.server')}finally{} if(typeof ms!=='string')ms=''; ms=prompt('Mastodon Server?',ms); if(typeof ms==='string' && ms.length){this.href='https://'+ms+'/share?text=I%27ve+completed+%22Secret+Entrance%22+%2D+Day+1+%2D+Advent+of+Code+2025+%23AdventOfCode+https%3A%2F%2Fadventofcode%2Ecom%2F2025%2Fday%2F1';try{localStorage.setItem('mastodon.server',ms);}finally{}}else{return false;}" target="_blank">Mastodon</a
 ></span>]</span> this puzzle.</p>
