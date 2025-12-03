@@ -23,7 +23,7 @@ def html_to_markdown(text: str):
         .replace('<em>', "<b>") \
 
     text = re.sub('<script>.*</script>', "", text)
-    text = re.sub('<p class="day-success">(.|\n)*', "", text)
+    text = re.sub('<p class="day-success">*</p>', "", text)
     text = re.sub('<p>Your puzzle answer was <code>[0-9]*</code>.</p>', "", text)
 
     title = re.search('<h2>--- .* ---</h2>', text).group(0)[8:-9]
