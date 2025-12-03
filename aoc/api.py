@@ -60,6 +60,8 @@ class String:
 
     @staticmethod
     def split(separator: str):
+        if separator == "":
+            return lambda x: list(x)
         return lambda x: x.split(separator)
 
     @staticmethod
