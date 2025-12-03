@@ -12,19 +12,20 @@ This repository contains my solutions for [Advent of Code](https://adventofcode.
 ## Description 🎁
 [Advent of Code](https://adventofcode.com/) is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like.
 
-## Setup
+## Setup ⚙️
 
-To run setup for a given day use `.\aoc\setup.py <year> <day>` in main directory of the project.
+To set up a puzzle for a given day, run the following command in the main directory of the project:
+
+```bash
+.\aoc\setup.py <year> <day>
+```
 This setup creates the following:
-* Directory of the year if not exists
-* Directory of the day if not exists
-* A README.md file containing the puzzle explanation
-* An input.txt file with the given user input
-* An empty file for the test input mentioned in the puzzle
-* A solution.txt to enter the solution for test validation
-* The puzzle.py file to solve the puzzle in. Prepared with the basic skeleton structure part 1 and part 2
+- **Year directory** – Created if it does not already exist.  
+- **Day directory** – Created inside the Year directory if it does not already exist.  
+- **README.md** – Contains the puzzle explanation.  
+- **input.txt** – Contains your personal puzzle input.  
+- **test_input.txt** – Empty file to store any example input mentioned in the puzzle.  
+- **solution.txt** – File to enter the solution for test validation.  
+- **puzzle.py** – Prepared with the basic skeleton structure for Part 1 and Part 2.
 
-Note: For the setup to fetch the info a `session_key.yml` is required with the current session key formatted as yml:
-```
-session: <session_key>
-```
+> Note: For the setup to fetch the info a `session_key.yml` is required with the current session key provided as yml: `session: <session_key>`
