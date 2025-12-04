@@ -55,5 +55,5 @@ class PuzzleTest(unittest.TestCase):
         elapsed = time.time() - start
         print(f"\t- part_2 took: {elapsed:.3f}s")
 
-        self.assertEqual(part_1(*params_1), solution1, day_path + " part1")
-        self.assertEqual(part_2(*params_2), solution2, day_path + " part2")
+        self.assertEqual(solution1, part1, day_path + " part1")
+        self.assertEqual(solution2, part2, day_path + " part2")
