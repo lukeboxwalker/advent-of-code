@@ -1,4 +1,5 @@
 import os
+import time
 import unittest
 
 from parameterized import parameterized
@@ -21,7 +22,7 @@ class PuzzleTest(unittest.TestCase):
         module = __import__(year_path + "." + day_path + ".puzzle", globals(), locals(), [], 0)
 
         path = "../" + year_path + "/" + day_path
-        print("Testing: " + path)
+        print("Testing: " + year_path + " " + day_path)
         params_1 = []
         params_2 = []
 
@@ -44,5 +45,15 @@ class PuzzleTest(unittest.TestCase):
                 solution1 = int(solution1)
             if solution2.isdigit():
                 solution2 = int(solution2)
+        start = time.time()
+        part1 = part_1(*params_1)
+        elapsed = time.time() - start
+        print(f"\t- part_1 took: {elapsed:.3f}s")
+
+        start = time.time()
+        part2 = part_2(*params_2)
+        elapsed = time.time() - start
+        print(f"\t- part_2 took: {elapsed:.3f}s")
+
         self.assertEqual(part_1(*params_1), solution1, day_path + " part1")
         self.assertEqual(part_2(*params_2), solution2, day_path + " part2")
