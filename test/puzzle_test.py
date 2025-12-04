@@ -4,13 +4,15 @@ import unittest
 
 from parameterized import parameterized
 
+BASE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.abspath(os.path.join(BASE, ".."))
 
 def build_params():
     params = []
-    years = [i for i in os.listdir(os.getcwd() + "/..") if i.startswith("year")]
+    years = [i for i in os.listdir(ROOT) if i.startswith("year")]
     for year_path in years:
-        days = sorted(
-            [i for i in os.listdir(os.getcwd() + "/../" + year_path) if i.startswith("day")])
+        year_dir = os.path.join(ROOT, year_path)
+        days = sorted([i for i in os.listdir(year_dir) if i.startswith("day")])
         params += list(zip([year_path] * len(days), days))
     return params
 
