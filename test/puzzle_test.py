@@ -7,6 +7,7 @@ from parameterized import parameterized
 BASE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(BASE, ".."))
 
+
 def build_params():
     params = []
     years = [i for i in os.listdir(ROOT) if i.startswith("year")]
@@ -19,8 +20,10 @@ def build_params():
 
 class PuzzleTest(unittest.TestCase):
 
-    @parameterized.expand(build_params())
-    def test_puzzle_parts(self, year_path: str, day_path: str):
+    @parameterized.expand([
+        (f"{year}_{day}", year, day) for year, day in build_params()
+    ])
+    def test_puzzle_parts(self, name: str, year_path: str, day_path: str):
         module = __import__(year_path + "." + day_path + ".puzzle", globals(), locals(), [], 0)
 
         path = "../" + year_path + "/" + day_path
