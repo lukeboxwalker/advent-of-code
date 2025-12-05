@@ -26,7 +26,7 @@ class PuzzleTest(unittest.TestCase):
     def test_puzzle_parts(self, name: str, year_path: str, day_path: str):
         module = __import__(year_path + "." + day_path + ".puzzle", globals(), locals(), [], 0)
 
-        path = "../" + year_path + "/" + day_path
+        path = os.path.join(ROOT, year_path, day_path)
         print("Testing: " + year_path + " " + day_path)
         params_1 = []
         params_2 = []
