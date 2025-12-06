@@ -24,9 +24,6 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Test
         run : |
-          PYTHONPATH="$(pwd)" coverage run -m unittest discover -s test -p "puzzle_test.py" -v
-          coverage xml
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
+          PYTHONPATH="$(pwd)" python -m unittest discover -s test -p "puzzle_test.py" -v
         with:
           fail_ci_if_error: true
