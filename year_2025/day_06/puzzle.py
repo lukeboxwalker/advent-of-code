@@ -8,7 +8,7 @@ def read_input(filename: str) -> list:
 
 
 def part_1(values: list) -> int:
-    numbers = list(map(lambda x: list(map(int, re.findall("(\\d+) *", x))), values[:len(values) - 1]))
+    numbers = list(map(lambda x: list(map(int, re.findall("(\\d+)", x))), values[:len(values) - 1]))
     operations = [sum if x == "+" else prod for x in list(values[-1]) if x != " "]
     return sum(operations[col_index]([row[col_index] for row in numbers]) for col_index in range(len(numbers[0])))
 
