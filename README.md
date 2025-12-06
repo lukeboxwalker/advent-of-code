@@ -1,3 +1,4 @@
+<a href="https://github.com/lukeboxwalker/advent-of-code/actions">![example workflow](https://github.com/lukeboxwalker/advent-of-code/actions/workflows/main.yml/badge.svg)</a>
 <a href="https://github.com/lukeboxwalker/advent-of-code/search?l=python">![language](https://img.shields.io/github/languages/top/lukeboxwalker/advent-of-code)</a>
 <a href="https://www.python.org/downloads/release/python-31212">![version](https://img.shields.io/badge/python-v3.12-blue)</a>
 <a href="https://github.com/lukeboxwalker/advent-of-code/commits/master">![commit](https://img.shields.io/github/last-commit/lukeboxwalker/advent-of-code)</a>
