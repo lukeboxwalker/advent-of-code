@@ -1,9 +1,5 @@
 
-<h1>Day 1: Secret Entrance 🎄</h1><p>Copyright (c) Eric Wastl</p><a href=https://adventofcode.com/2025/day/1>Link to Day 1</a><h2>Part One 🎁</h2><p>The Elves have good news and bad news.</p>
-<p>The good news is that they've discovered <a href="https://en.wikipedia.org/wiki/Project_management" target="_blank">project management</a>! This has given them the tools they need to prevent their usual Christmas emergency. For example, they now know that the North Pole decorations need to be finished soon so that other critical tasks can start on time.</p>
-<p>The bad news is that they've realized they have a <b>different</b> emergency: according to their resource planning, none of them have any time left to decorate the North Pole!</p>
-<p>To save Christmas, the Elves need <b>you</b> to <b>finish decorating the North Pole by December 12th</b>.</p>
-<p>Collect stars by solving puzzles.  Two puzzles will be made available on each day; the second puzzle is unlocked when you complete the first.  Each puzzle grants <b>one star</b>. Good luck!</p>
+<h1>Day 1: Secret Entrance 🎄</h1><p>Copyright (c) Eric Wastl</p><a href=https://adventofcode.com/2025/day/1>Link to Day 1</a><h2>Part One 🎁</h2>
 <p>You arrive at the secret entrance to the North Pole base ready to start decorating. Unfortunately, the <b>password</b> seems to have been changed, so you can't get in. A document taped to the wall helpfully explains:</p>
 <p>"Due to new security protocols, the password is locked in the safe below. Please see the attached document for the new combination."</p>
 <p>The safe has a dial with only an arrow on it; around the dial are the numbers <code>0</code> through <code>99</code> in order. As you turn the dial, it makes a small <b>click</b> noise as it reaches each number.</p>
