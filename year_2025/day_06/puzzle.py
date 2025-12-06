@@ -4,7 +4,9 @@ from aoc.api import *
 
 
 def read_input(filename: str) -> list:
-    return FileStream(filename).list()
+    values = FileStream(filename).list()
+    max_len = max(len(row) for row in values)
+    return [row + " " * (max_len - len(row)) for row in values]
 
 
 def part_1(values: list) -> int:
@@ -17,9 +19,9 @@ def part_2(values: list) -> int:
     operations = [(sum if x == "+" else prod, []) for x in list(values[-1]) if x != " "]
     max_len = max(map(len, values[:len(values) - 1]))
     operation_index = 0
-    for i in range(max_len + 1):
-        col = ''.join(["" if len(r) - 1 < i else r[i] for r in values[:len(values) - 1]]).replace(" ", "")
-        if col.isdigit():
+    for i in range(max_len):
+        col = ''.join([r[i] for r in values[:len(values) - 1] if r[i] != " "])
+        if col:
             operations[operation_index][1].append(int(col))
         else:
             operation_index += 1
